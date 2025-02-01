@@ -1,7 +1,7 @@
 <?php
     setlocale(LC_TIME, 'es_ES.UTF-8');
     $pathContent = 'content1-initPoa.php';
-    $pageContent = array("title" => 'INICIALIZAR POA'); 
+    $pageContent = array("title" => 'Planeación Operativa Anual de Actividades'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">

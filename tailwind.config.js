@@ -2,6 +2,7 @@
 module.exports = {
     content: [
       "./*.php",
+      "./views/**/*.php",
       "./src/**/*.{html,php,js}",
     ],
     theme: {
@@ -18,6 +19,10 @@ module.exports = {
         fontFamily: {
           montserrat: ['Montserrat', 'sans-serif'],
           roboto: ['Roboto', 'serif']
+        },
+        maxHeight: {
+          '40': '10rem',
+          'custom': '20rem', // Puedes definir una altura personalizada
         },
       },
     },
