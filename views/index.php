@@ -1,5 +1,6 @@
 <?php
-    setlocale(LC_TIME, 'es_ES.UTF-8');
+    setlocale(LC_TIME, 'es_MX.UTF-8');
+    date_default_timezone_set('America/Mexico_City');  // Zona horaria de México
     $pathContent = 'content1-index.php';
     $pageContent = array("title" => 'INICIO'); 
 ?>
