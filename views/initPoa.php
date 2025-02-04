@@ -1,6 +1,6 @@
 <?php
     setlocale(LC_TIME, 'es_ES.UTF-8');
-    $pathContent = 'content1-initPoa.php';
+    $pathContent = 'initpoa/main-initPoa.php';
     $pageContent = array("title" => 'Planeación Operativa Anual de Actividades'); 
 ?>
 <!DOCTYPE html>
@@ -20,4 +20,6 @@
     </main>
 </body>
 <script src="../public/js/sideBarToggle.js"></script>
+<script src="../public/js/initPoa.js"></script>
+
 </html>
