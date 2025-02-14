@@ -1,0 +1,3 @@
+INSERT INTO POAS_CONCEPTOACTIVIDAD (ID,FOLIO,TIPO_CUENTA,FECHA_EJECUCION,CONCEPTO,UNIDAD,CANTIDAD,COSTO_UNITARIO,IMPORTE_TOTAL,OBSERVACIONES) VALUES
+	 (1,1,4,'2025-02-14','Arreglo floral',3,2,400,800,'Niunapapitodoenolden'),
+	 (2,1,2,'2025-02-14','Alimentos del equipo de verificación (7 días por 6 personas)',1,12,3500,42000,'eldiaaaabloo');

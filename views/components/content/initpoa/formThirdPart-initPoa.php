@@ -82,17 +82,22 @@
             </div>
         </div>
         
-        <div class="flex justify-between">
-            <button onclick="initPoa_changeView('initPoa-third', 'initPoa-second')" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-4 rounded-md">
+        <div class="flex justify-between h-24">
+            <button onclick="initPoa_changeView('initPoa-third', 'initPoa-second')" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-4 rounded-md h-3/6">
                 <i class="bi bi-arrow-left-short"></i> atrás 
             </button>
-            <button onclick="" class="hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md">
-                Añadir concepto/actividad <i class="bi bi-plus-circle"></i>  
-            </button>
+            <div class="flex flex-col items-end">
+                <button data-modal="" class="hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md">
+                    Añadir concepto/actividad <i class="bi bi-plus-circle"></i>  
+                </button>
+                <button data-modal="conceptActivities" class="open-modal hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md w-9/12 mt-1">
+                    Mis conceptos<i class="bi bi-list"></i>  
+                </button>
+            </div>
         </div>
         <div class="flex space-x-4">
             <div class="flex flex-1 justify-center items-center">
-                <button onclick="initPoa_changeView('initPoa-seconds', 'initPoa-thirds',)" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-4 h-24 rounded-full">
+                <button onclick="" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
                     Finalizar
                 </button>
             </div>
