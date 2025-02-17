@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="">
-<main class="mainContainer w-screen h-screen bg-custom_lightGray flex">
+    <main class="mainContainer w-screen h-screen bg-custom_lightGray flex">
         <?php 
             include_once 'components/sideBar.php';
             include_once 'components/content1.php';
