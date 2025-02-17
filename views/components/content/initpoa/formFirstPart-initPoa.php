@@ -41,18 +41,25 @@
                 <label for="fecha-inicio" class="block text-sm font-medium text-gray-300 mb-1">Fecha de inicio</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-calendar-check"></i></span>
-                    <input type="date" id="fecha-inicio" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <input input-action="generalDateFormat" type="date" id="fecha-inicio" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                 </div>
+                <p id='errorMessage-fecha-inicio' class="error-message absolute left-0 mt-1 text-red-500 text-sm hidden">
+                    ⚠ Este campo no puede estar vacío. 
+                </p>
             </div>
 
             <div class="flex-1">
                 <label for="fecha-termino" class="block text-sm font-medium text-gray-300 mb-1">Fecha de término</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-calendar-x"></i></span>
-                    <input type="date" id="fecha-termino" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <input input-action="compareFechaInicio" type="date" id="fecha-termino" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                 </div>
+                <p id='errorMessage-fecha-termino' class="error-message left-2 mt-1 text-red-500 text-sm hidden">
+                    ⚠ Este campo no puede estar vacío ni ser menor a fechaInicio. 
+                </p>
             </div>
         </div>
+        
 
         <!-- Área y Sub área (Selects) -->
         <div class="flex space-x-4">
@@ -60,24 +67,30 @@
                 <label for="area" class="block text-sm font-medium text-gray-300 mb-1">Área</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="area" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select DB-action="test" id="area" class="auto-fill input-fieldSelect flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Área de ejemplo</option>
                         <option>Área 1</option>
                         <option>Área 2</option>
                     </select>
                 </div>
+                <p id='errorMessage-area' class="error-message absolute left-0 mt-1 text-red-500 text-sm hidden">
+                    ⚠ Este campo no puede estar vacío. 
+                </p>
             </div>
 
             <div class="flex-1">
                 <label for="sub-area" class="block text-sm font-medium text-gray-300 mb-1">Sub área</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-2"></i></span>
-                    <select id="sub-area" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select input-action="emptyVerification" id="sub-area" class="input-fieldSelect flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Sub área de ejemplo</option>
                         <option>Sub área 1</option>
                         <option>Sub área 2</option>
                     </select>
                 </div>
+                <p id='errorMessage-sub-area' class="error-message left-0 mt-1 text-red-500 text-sm hidden">
+                    ⚠ Este campo no puede estar vacío. 
+                </p>
             </div>
         </div>
 

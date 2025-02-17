@@ -27,6 +27,9 @@ class InitPoaForm extends PoaForm{
         return {
             fillEjercicioFiscal: () => this.fillEjercicioFiscal(),
             verifyLength: () => this.verifyLength(),
+            generalDateFormat: () => this.generalDateFormat(),
+            compareFechaInicio: () => this.compareFechaInicio(),
+            emptyVerification: () => this.emptyVerification(this.input.value),
             default: () => console.warn(`La acción del atributo'${this.action}' no es reconocida.`)
         }
     }
@@ -54,6 +57,25 @@ class InitPoaForm extends PoaForm{
         
         errorMessage.classList.add("hidden")
         return true
+        
+    }
+
+    generalDateFormat(){
+        var current = this.input.value
+        if(!this.emptyVerification(current)) return
+        console.log(current)
+    }
+
+    compareFechaInicio(){
+        var endDate = this.input.value
+        if(!this.emptyVerification(endDate)) return
+        var startDate = document.getElementById("fecha-inicio").value
+        if(!this.emptyVerification(startDate)) return
+        endDate = new Date(endDate)
+        startDate = new Date(startDate)
+        
+        // console.log(endDate + '-' + startDate)
+        if(endDate < startDate) this.emptyVerification('')
         
     }
 }

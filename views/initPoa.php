@@ -27,15 +27,33 @@
 <script src="../public/js/initPoa.js"></script>
 <script src="../public/js/modals.js"></script>
 <script src="../public/js/Class-PoaForm.js"></script>
+<script src="../public/js/Class-DML.js"></script>
 <script>
     var inputs = document.querySelectorAll('.input-field')
-    if(this.inputs.length === 0){
-        console.error("No se encontraron inputs con la clase 'input-field'.");
+    if(inputs.length === 0){
+        console.error("No se encontraron inputs con la clase 'input-field'.")
     }
     inputs.forEach( input => {
         input.addEventListener("blur", () => {
             new InitPoaForm(input);
         })
     })
+    var selects = document.querySelectorAll('.input-fieldSelect')
+    if(selects.length === 0){
+        console.error("No se encontraron inputs con la clase 'input-field'.")
+    }
+    selects.forEach( select => {
+        select.addEventListener('change', ()=> {
+            // console.log(new DBGetter(select))
+            new DBHandler(select, 'test')
+            
+        })
+    })
+
+    
+
+</script>
+<script>
+    new AutoFill('selectsInitPoa')
 </script>
 </html>
