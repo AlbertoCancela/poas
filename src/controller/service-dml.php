@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 (FOLIO, FECHA_ELABORACION, EJERCICIO_FISCAL, DESCRIPCION, FECHA_INICIO, FECHA_TERMINO, ID_AREA, 
                 TIPO_GASTO, ID_PDI_PROYECTOMETA, OBSERVACIONES, AUTOR) 
                 VALUES 
-                (2,:fecha_elaboracion, :ejercicio_fiscal, :descripcion_general, :fecha_inicio, :fecha_termino, :area, 
+                (3,:fecha_elaboracion, :ejercicio_fiscal, :descripcion_general, :fecha_inicio, :fecha_termino, :area, 
                 :tipo_gasto, :proyecto_meta, :descripcion_observaciones, :autor)";
 
         // Parámetros a pasar en la consulta

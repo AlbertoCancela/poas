@@ -240,7 +240,13 @@ async function provisionalInsertPoa() {
         });
 
         const result = await response.json();
-        console.log(result);
+        if(result.success){
+            Swal.fire({
+                title: "Registro exitoso!",
+                text: "¡El poa se ha registrado en la base de datos!",
+                icon: "success"
+              });
+        };
     } catch (error) {
         console.error("❌ Error en la solicitud:", error);
     }

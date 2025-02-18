@@ -1,4 +1,8 @@
-<div class="bg-custom_gray basis-8/12 shadow-custom_medium rounded-md p-4 overflow-y-auto max-h-[500px]">
+<div class=" bg-custom_gray basis-3/12 shadow-custom_medium rounded-md">
+  
+</div>
+
+<div class="bg-custom_gray basis-8/12 shadow-custom_medium rounded-md p-4 overflow-y-auto max-h-[screen]">
   <h2 class="text-center font-bold text-lg uppercase">Planeación Operativa Anual de Actividades</h2>
 
   <div class="grid grid-cols-2 gap-4 text-sm mt-2 border border-gray-300 p-2">
@@ -67,7 +71,3 @@
 
   <div class="text-right font-bold mt-2">Costo estimado del proyecto: $309,500.00</div>
 </div>
-
-
-
-<div class=" bg-custom_gray basis-3/12 shadow-custom_medium rounded-md"></div>
