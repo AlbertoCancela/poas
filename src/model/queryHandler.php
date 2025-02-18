@@ -2,8 +2,8 @@
 header("Content-Type: application/json"); // 🔹 Asegura que PHP SIEMPRE devuelva JSON
 
 class DataBase {
-    private $host = "10.10.1.9"; 
-    private $dbname = "C:\\www\\htdocs\\siaduh\\BD\\BDSISCUH.GDB";
+    private $host = "localhost"; 
+    private $dbname = "/var/lib/firebird/data/poas.fdb";
     private $username = "SYSDBA";
     private $password = "masterkey";
     private $conn;
@@ -40,6 +40,12 @@ class QueryHandler extends DataBase {
     }
     public function autofill_area( $sql ){
         return $this->executeQuery( $sql );
+    }
+    public function fillSubArea( $sql, $params ){
+        return $this->executeQuery( $sql, $params );
+    }
+    public function insertPoa($sql, $params) {
+        return $this->executeQuery($sql, $params);
     }
 }
 ?>

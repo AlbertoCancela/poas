@@ -51,7 +51,7 @@ class AutoFill extends API{
             var caseSelect = select.getAttribute('id')
             switch(caseSelect){
                 case 'area':
-                    var sql = 'SELECT * FROM POAS_SECCIONES'
+                    var sql = 'SELECT * FROM POAS_DEPARTAMENTOS'
                     const response = await this.request('service-dml.php',{action: 'autofill_'+caseSelect, sql: sql})
                     if(!response.success) return
                     
@@ -60,6 +60,58 @@ class AutoFill extends API{
                     while(i < response.data.length){
                         var value = response.data[i].ID
                         var label = response.data[i].NOMBRE
+                        htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+                        i++
+                    }
+                    select.innerHTML = htmlOptions
+                    break;
+                case 'eje-rector':
+                    var sql = 'SELECT * FROM POAS_EJERECTOR'
+                    const responseER = await this.request('service-dml.php',{action: 'autofill_eje-rector', sql: sql})
+                    if(!responseER.success) return
+                    var htmlOptions = '<option disabled selected>Eje rector</option>';
+                    var i = 0
+                    while(i < responseER.data.length){
+                        var value = responseER.data[i].ID
+                        var label = responseER.data[i].NOMBRE
+                        htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+                        i++
+                    }
+                    select.innerHTML = htmlOptions
+                    break;
+                case 'tipo-cuenta':
+                    var sql = 'SELECT * FROM POAS_CUENTAS'
+                    const responseTC = await this.request('service-dml.php',{action: 'autofill_eje-rector', sql: sql})
+                    if(!responseTC.success) return
+                    var htmlOptions = '<option disabled selected>Tipo de cuenta</option>'
+                    var i = 0
+                    while(i < responseTC.data.length){
+                        var value = responseTC.data[i].ID
+                        var label = responseTC.data[i].NOMBRE
+                        htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+                        i++
+                    }
+                    select.innerHTML = htmlOptions
+                    break;
+                case 'fecha-ejecucion':
+                    var months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'] 
+                    var i = 0
+                    var htmlOptions = '<option disabled selected>Mes de ejecución</option>'
+                    while(i < months.length){
+                        htmlOptions +=  '<option value="'+months[i]+'">'+months[i]+'</option>'
+                        i++
+                    }
+                    select.innerHTML = htmlOptions
+                    break;
+                case 'unidad':
+                    var sql = 'SELECT * FROM POAS_UNIDADES'
+                    const responseU = await this.request('service-dml.php',{action: 'autofill_eje-rector', sql: sql})
+                    if(!responseU.success) return
+                    var htmlOptions = '<option disabled selected>Unidades</option>'
+                    var i = 0
+                    while(i < responseU.data.length){
+                        var value = responseU.data[i].ID
+                        var label = responseU.data[i].NOMBRE
                         htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
                         i++
                     }
@@ -87,6 +139,9 @@ class DBHandler extends API {
 
     getMapActions(){
         return {
+            fillSubArea: () => this.fillSubArea(),
+            fillLineaAccion: () => this.fillLineaAccion(),
+            fillProyectoMeta: () => this.fillProyectoMeta(),
             test: () => this.test(),
             default: () => console.warn(`La acción '${this.action}' no es reconocida.`)
         }
@@ -94,43 +149,99 @@ class DBHandler extends API {
 
     async test(){
         // const response = await this.request('service-dml.php',{action: 'holii test'})
-        console.log('response')
+        console.log('response NIGGA')
     }
 
+    async fillSubArea(){
+        // console.log(this.element1.value)
+        var sql = "SELECT * FROM POAS_SECCIONES WHERE ID_DEPARTAMENTO = :id";
+        const body = {action: 'fillSubArea', sql: sql, params: {id: this.element1.value}}
+        
+        const response = await this.request('service-dml.php', body)
+        if(!response.success) return
+        
+        const selectSubArea = document.getElementById('sub-area');
+        var htmlOptions = '<option disabled selected>Sub Área</option>'
+        var i = 0
+        while(i < response.data.length){
+            var value = response.data[i].ID
+            var label = response.data[i].NOMBRE
+            htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+            i++
+        }
+        selectSubArea.innerHTML = htmlOptions
+    }
+    async fillLineaAccion(){
+        var sql = "SELECT * FROM POAS_LINEASACCION WHERE ID_EJE_RECTOR = :id";
+        const body = {action: 'fillSubArea', sql: sql, params: {id: this.element1.value}}
+        const response = await this.request('service-dml.php', body)
+        if(!response.success) return
+        console.log(response.data)
+        const selectLineaAcction = document.getElementById('linea-accion');
+        var htmlOptions = '<option disabled selected>Líneas de acción</option>'
+        var i = 0
+        while(i < response.data.length){
+            var value = response.data[i].ID
+            var label = response.data[i].NOMBRE
+            htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+            i++
+        }
+        selectLineaAcction.innerHTML = htmlOptions
+    }
+    async fillProyectoMeta(){
+        var sql = "SELECT * FROM POAS_PROYECTOMETA WHERE ID_LINEAS_ACCION = :id";
+        const body = {action: 'fillSubArea', sql: sql, params: {id: this.element1.value}}
+        const response = await this.request('service-dml.php', body)
+        if(!response.success) return
+        console.log(response.data)
+        const selectLineaAcction = document.getElementById('proyecto-meta');
+        var htmlOptions = '<option disabled selected>Proyecto / meta</option>'
+        var i = 0
+        while(i < response.data.length){
+            var value = response.data[i].ID
+            var label = response.data[i].NOMBRE
+            htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+            i++
+        }
+        selectLineaAcction.innerHTML = htmlOptions
+    }
 }
 
-// 🔹 Clase Hija para Modificar Datos y Manipular Campos
-// class DBUpdater extends API {
-//     async insertData(data) {
-//         return await this.request("insert.php", "POST", data);
-//     }
+async function provisionalInsertPoa() {
+    const formData = {};
 
-//     async updateData(data) {
-//         return await this.request("update.php", "PUT", data);
-//     }
+    // Obtener todos los inputs, selects y textareas
+    const inputs = document.querySelectorAll("#initPoa-first input, #initPoa-first textarea, #initPoa-first select, #initPoa-second input, #initPoa-second textarea, #initPoa-second select, #initPoa-third input, #initPoa-third textarea, #initPoa-third select");
 
-//     async deleteData(id) {
-//         return await this.request(`delete.php?id=${id}`, "DELETE");
-//     }
+    inputs.forEach(input => {
+        if (input.type === "radio") {
+            if (input.checked) {
+                formData[input.name] = input.id;
+            }
+        } else if (input.type === "checkbox") {
+            formData[input.id] = input.checked;
+        } else {
+            formData[input.id] = input.value.trim();
+        }
+    });
 
-//     // 🔹 Acción extra: Cambiar valor de un input
-//     setInputValue(inputElement, value) {
-//         if (inputElement) {
-//             inputElement.value = value;
-//             console.log(`✅ Input actualizado: ${value}`);
-//         } else {
-//             console.warn("⚠️ Input no encontrado.");
-//         }
-//     }
+    // Construcción del body para el fetch
+    const requestBody = {
+        action: "insertPoa", // Acción para el backend
+        sql: "", // Aquí debes colocar tu consulta SQL en el backend
+        params: formData // Enviamos los datos del formulario
+    };
 
-//     // 🔹 Acción extra: Seleccionar una opción en un `<select>`
-//     setSelectValue(selectElement, value) {
-//         if (selectElement) {
-//             selectElement.value = value;
-//             console.log(`✅ Opción seleccionada en select: ${value}`);
-//         } else {
-//             console.warn("⚠️ Select no encontrado.");
-//         }
-//     }
-// }
+    try {
+        const response = await fetch("../src/controller/service-dml.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestBody),
+        });
 
+        const result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.error("❌ Error en la solicitud:", error);
+    }
+}

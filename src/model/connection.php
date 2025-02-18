@@ -1,7 +1,7 @@
 <?php
 try {
     $host = "localhost";
-    $dbname = "/var/lib/firebird/data/POAS.fdb"; 
+    $dbname = "/var/lib/firebird/data/poas.fdb";
     $user = "SYSDBA";
     $password = "masterkey";
 

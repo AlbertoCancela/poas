@@ -21,7 +21,7 @@
 
                         <!-- Submenú desplegable -->
                         <div id="submenu-poas" class="max-h-0 opacity-0 bg-custom_glass flex-col mt-2 space-y-1 overflow-hidden transition-all duration-600 ease-in-out">
-                            <a href="#" class="block px-4 py-2 border-b-2 border-transparent hover:border-green-600">Ver POA's</a>
+                            <a href="verPoas.php" class="block px-4 py-2 border-b-2 border-transparent hover:border-green-600">Ver POA's</a>
                             <a href="initPoa.php" class="block px-4 py-2 border-b-2 border-transparent hover:border-green-600">Nuevo</a>
                             <a href="#" class="block px-4 py-2 border-b-2 border-transparent hover:border-green-600">Información</a>
                         </div>

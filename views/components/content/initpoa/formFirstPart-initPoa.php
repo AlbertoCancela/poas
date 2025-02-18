@@ -67,7 +67,7 @@
                 <label for="area" class="block text-sm font-medium text-gray-300 mb-1">Área</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select DB-action="test" id="area" class="auto-fill input-fieldSelect flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select DB-action="fillSubArea" id="area" class="auto-fill input-fieldSelect flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Área de ejemplo</option>
                         <option>Área 1</option>
                         <option>Área 2</option>
@@ -82,7 +82,7 @@
                 <label for="sub-area" class="block text-sm font-medium text-gray-300 mb-1">Sub área</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-2"></i></span>
-                    <select input-action="emptyVerification" id="sub-area" class="input-fieldSelect flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select input-action="" id="sub-area" class=" flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Sub área de ejemplo</option>
                         <option>Sub área 1</option>
                         <option>Sub área 2</option>
@@ -101,13 +101,13 @@
         <div class="flex bg-gray-700 rounded-md border border-gray-600 p-2">
             <!-- Opción: Gasto estratégico -->
             <label class="flex-1 cursor-pointer text-center">
-                <input type="radio" name="tipo_gasto" id="gasto-estrategico" class="input-field hidden peer">
+                <input type="radio" name="tipo_gasto" id="estrategico" class="input-field hidden peer">
                 <span class="hover:border-green-600 peer-checked:bg-green-600 peer-checked:text-white block px-4 py-2 bg-gray-600 border-2 border-gray-500 rounded-l-md text-sm">Estratégico</span>
             </label>
 
             <!-- Opción: Gasto corriente -->
             <label class="flex-1 cursor-pointer text-center">
-                <input type="radio" name="tipo_gasto" id="gasto-corriente" class="input-field hidden peer">
+                <input type="radio" name="tipo_gasto" id="corriente" class="input-field hidden peer">
                 <span class="hover:border-green-600 peer-checked:bg-green-600 peer-checked:text-white block px-4 py-2 bg-gray-600 border-2 border-gray-500 rounded-r-md text-sm">Corriente</span>
             </label>
         </div>

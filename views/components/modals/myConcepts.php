@@ -15,8 +15,15 @@
                     <span>Concepto 1</span>
                     <span class="arrow transition-transform duration-300">▼</span>
                 </button>
-                <div class="collapse-content hidden p-3 bg-gray-50">
-                    <p>Descripción o contenido del concepto 1.</p>
+                <div class="collapse-content hidden p-3 bg-gray-50 overflow-hidden" style="max-height: 0; opacity: 0;">
+                    <p>Tipo de cuenta:</p>
+                    <p>Fecha de ejecución:</p>
+                    <p>Concepto o actividad:</p>
+                    <p>Unidad:</p>
+                    <p>Cantidad:</p>
+                    <p>Costo Unitario:</p>
+                    <p>Importe:</p>
+                    <p>Responsables:</p>
                 </div>
             </div>
 
@@ -26,8 +33,15 @@
                     <span>Concepto 2</span>
                     <span class="arrow transition-transform duration-300">▼</span>
                 </button>
-                <div class="collapse-content hidden p-3 bg-gray-50">
-                    <p>Detalles sobre el concepto 2.</p>
+                <div class="collapse-content hidden p-3 bg-gray-50 overflow-hidden" style="max-height: 0; opacity: 0;">
+                    <p>Tipo de cuenta:</p>
+                    <p>Fecha de ejecución:</p>
+                    <p>Concepto o actividad:</p>
+                    <p>Unidad:</p>
+                    <p>Cantidad:</p>
+                    <p>Costo Unitario:</p>
+                    <p>Importe:</p>
+                    <p>Responsables:</p>
                 </div>
             </div>
 
@@ -37,8 +51,15 @@
                     <span>Concepto 3</span>
                     <span class="arrow transition-transform duration-300">▼</span>
                 </button>
-                <div class="collapse-content hidden p-3 bg-gray-50">
-                    <p>Contenido adicional del concepto 3.</p>
+                <div class="collapse-content hidden p-3 bg-gray-50 overflow-hidden" style="max-height: 0; opacity: 0;">
+                    <p>Tipo de cuenta:</p>
+                    <p>Fecha de ejecución:</p>
+                    <p>Concepto o actividad:</p>
+                    <p>Unidad:</p>
+                    <p>Cantidad:</p>
+                    <p>Costo Unitario:</p>
+                    <p>Importe:</p>
+                    <p>Responsables:</p>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
                 <label for="tipo-cuenta" class="block text-sm font-medium text-gray-300 mb-1">Tipo de cuenta</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="tipo-cuenta" class="flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select id="tipo-cuenta" class="auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Cuenta ejemplo</option>
                         <option>cuenta 1</option>
                         <option>cuenta 2</option>
@@ -20,7 +20,7 @@
                 <label for="fecha-ejecucion" class="block text-sm font-medium text-gray-300 mb-1">Fecha de ejecución</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="fecha-ejecucion" class="flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select id="fecha-ejecucion" class="auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Mes de ejecución</option>
                         <option>Mes 1</option>
                         <option>Mes 2</option>
@@ -39,10 +39,10 @@
         <!-- Unidad y cantidad -->
         <div class="flex space-x-4">
             <div class="flex-1">
-                <label for="linea-accion" class="block text-sm font-medium text-gray-300 mb-1">Unidad</label>
+                <label for="unidad" class="block text-sm font-medium text-gray-300 mb-1">Unidad</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="linea-accion" class="flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select id="unidad" class="auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Unidad</option>
                         <option>Unidad 1</option>
                         <option>Unidad 2</option>
@@ -60,14 +60,14 @@
                 <label for="costo-unitario" class="block text-sm font-medium text-gray-300 mb-1">Costo unitario</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>
-                    <input type="text" id="costo-unitario" class="flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Costo unitario">
+                    <input input-action="fillImportes" type="text" id="costo-unitario" class="input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Costo unitario">
                 </div>
             </div>
             <div class="flex-1">
                 <label for="importes" class="block text-sm font-medium text-gray-300 mb-1">Importes</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>
-                    <input readonly type="text" id="importes" class="flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Importes" value="">
+                    <input readonly type="text" id="importes" class=" flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Importes" value="">
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
         </div>
         <div class="flex space-x-4">
             <div class="flex flex-1 justify-center items-center">
-                <button onclick="" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
+                <button onclick="provisionalInsertPoa()" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
                     Finalizar
                 </button>
             </div>
