@@ -3,7 +3,7 @@ header("Content-Type: application/json"); // 🔹 Asegura que PHP SIEMPRE devuel
 
 class DataBase {
     private $host = "localhost"; 
-    private $dbname = "/var/lib/firebird/data/poas.fdb";
+    private $dbname = "/var/lib/firebird/data/POAS.fdb";
     private $username = "SYSDBA";
     private $password = "masterkey";
     private $conn;
@@ -37,6 +37,9 @@ class DataBase {
 class QueryHandler extends DataBase {
     public function test() {
         return $this->executeQuery("SELECT * FROM POAS_USUARIOS");
+    }
+    public function simpleQuery ( $sql ){
+        return $this->executeQuery( $sql );
     }
     public function autofill_area( $sql ){
         return $this->executeQuery( $sql );

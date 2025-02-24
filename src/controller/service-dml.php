@@ -36,6 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode($response); // Si es un array PHP, lo convierte a JSON
         }
     }
+    if($data['action'] == 'obtainUsers'){
+        $response = $object->simpleQuery($data['sql']);
+        echo json_encode($response);
+    }
     if ($data['action'] == 'insertPoa') {
         $params = $data['params'];
         // Asignar valores con fallback en caso de que no existan

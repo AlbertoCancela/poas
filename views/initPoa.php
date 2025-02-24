@@ -29,6 +29,8 @@
 <script src="../public/js/modals.js"></script>
 <script src="../public/js/Class-PoaForm.js"></script>
 <script src="../public/js/Class-DML.js"></script>
+<script src="../public/js/tags.js"></script>
+<script src="../public/js/addConcepts.js"></script>
 <script>
     var inputs = document.querySelectorAll('.input-field')
     if(inputs.length === 0){

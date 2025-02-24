@@ -75,16 +75,18 @@
         <div class="flex space-x-4">
             <div class="flex-1">
                 <label for="responsable-tagContainer" class="block text-sm font-medium text-gray-300 mb-1">Responsables</label>
-                <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
-                    <span class=" inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>
-                    <input readonly type="text" id="responsable-tagContainer" class=" flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Importes" value="">
+                <div class="flex items-center bg-gray-700 rounded-md border border-gray-600 p-2 flex-wrap gap-2">
+                    <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>
+                    <div id="selected-tags" class="flex flex-wrap gap-1"></div>
+                    <input type="text" id="responsable-search" class="flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5 outline-none" placeholder="Buscar responsables">
                 </div>
+                <div id="suggestions" class="bg-gray-800 text-white mt-1 rounded-md shadow-md hidden max-h-40 overflow-auto"></div>
             </div>
         </div>
         
         <div class="flex justify-between h-24">
             <button onclick="initPoa_changeView('initPoa-third', 'initPoa-second')" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-4 rounded-md h-3/6">
-                <i class="bi bi-arrow-left-short"></i> atrás 
+                <i class="bi bi-arrow-left-short"></i> atrás
             </button>
             <div class="flex flex-col items-end">
                 <button data-modal="" class="hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md">
@@ -97,7 +99,7 @@
         </div>
         <div class="flex space-x-4">
             <div class="flex flex-1 justify-center items-center">
-                <button onclick="provisionalInsertPoa()" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
+                <button onclick="defineUsers()" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
                     Finalizar
                 </button>
             </div>
