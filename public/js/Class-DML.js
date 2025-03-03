@@ -24,23 +24,40 @@ class API {
 
 
 class AutoFill extends API{
-    constructor(action){
+    constructor(action = null){
         super('../src/controller/');
-        this.action = action
-        this.executeAction(this.action)
+        if (action){
+            this.action = action
+            this.executeAction(this.action)
+        }
     }
     executeAction( action ){
         const actions = this.getMapActions();
         const actionFunc = actions[action] || actions.default;
         actionFunc()
     }
-
     getMapActions(){
         return {
             selectsInitPoa: () => this.selectsInitPoa(),
+            obtainUsersData: () => this.obtainUsersData(),
             test: () => this.test(),
             default: () => console.warn(`La acción '${this.action}' no es reconocida.`)
         }
+    }
+    async obtainUsersData(){
+        var sql = "au";
+        const response = await this.request('service-dml.php',{action: 'obtainData', sql: sql})
+        // console.log(response)
+        var i = 0
+        var suggestions = [];
+        while(i < response.data.length){
+            var id = response.data[i]['ID']
+            var nombre = response.data[i]['NOMBRE']
+            suggestions.push(id+"-"+nombre)
+            i++
+        }
+        // console.log(suggestions)
+        return suggestions
     }
     test (){
         console.log('xd')

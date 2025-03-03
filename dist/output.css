@@ -724,12 +724,12 @@ video {
   max-height: 0px;
 }
 
-.max-h-\[screen\] {
-  max-height: screen;
-}
-
 .max-h-40 {
   max-height: 10rem;
+}
+
+.max-h-\[screen\] {
+  max-height: screen;
 }
 
 .w-6\/12 {

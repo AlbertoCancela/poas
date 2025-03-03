@@ -3,25 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const suggestionsContainer = document.getElementById("suggestions");
     const selectedTagsContainer = document.getElementById("selected-tags");    
 
-    var obtainUsers = async () => {
-        var object = new API('../src/controller/');
-        var sql = "SELECT * FROM POAS_USUARIOS"
-        const body = {
-            action: 'obtainUsers', 
-            sql: sql
+    async function getSuggestions() {
+        try {
+            const autofill = new AutoFill(); // Crear la instancia
+            let suggestions = await autofill.obtainUsersData(); // Llamar al método asíncrono
+            return suggestions;
+        } catch (error) {
+            console.error("Error obteniendo usuarios:", error);
+            return [];
         }
-        var response = await object.request('service-dml.php', body)
-        var i = 0
-        var suggestions = [];
-        while(i < response.data.length){
-            var id = response.data[i]['ID']
-            var nombre = response.data[i]['NOMBRE']
-            suggestions.push(id+"-"+nombre)
-            i++
-        }
-        return suggestions
     }
-    obtainUsers().then(suggestions => {
+    getSuggestions().then(suggestions => {
         input.addEventListener("input", () => {
             const query = input.value.toLowerCase();
             suggestionsContainer.innerHTML = "";

@@ -8,6 +8,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
     $object = new QueryHandler();
 
+    $sqlQuery = ['au' => "SELECT * FROM POAS_USUARIOS pu",
+                'ac' => "SELECT * FROM POAS_CUENTAS"];
+    
+    if($data['action'] == 'obtainData'){
+        $sql = $sqlQuery[$data['sql']];
+        // echo  json_encode($sql); 
+        $response = $object->simpleQuery($sql);
+        if (is_string($response)) {
+            echo $response; // Si ya es un JSON string, solo lo devuelve
+        } else {
+            echo json_encode($response); // Si es un array PHP, lo convierte a JSON
+        }
+    }
     if ($data['action'] == 'autofill_area') {
         $response = $object->autofill_area($data['sql']);
         if (is_string($response)) {

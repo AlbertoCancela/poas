@@ -1,3 +1,22 @@
+addConcept = () => {
+    const conceptItem = document.querySelectorAll('.concept')
+    var arrayItems = {}
+    conceptItem.forEach(item => {
+        var conceptItem = item.getAttribute('conceptItem')
+        var item = item.value;
+        arrayItems[ conceptItem] = item
+    })
+    return arrayItems
+}
+
+var lengthVerification = (a,b, c = null) => {
+    if(a.length > b && a.length <= c){
+        return users;
+    }
+    return false;
+}
+
+
 var defineUsers = () => {
     var tags = document.querySelectorAll('.userTag')
     var users = []
@@ -6,7 +25,5 @@ var defineUsers = () => {
         newData = data.split('-')
         users.push(newData[0])
     })
-    var testSessions = {'cuenta':'1', 'fechaEjecucion':'2', 'conceptoActividad': '22', users}
-    console.log(testSessions.users)
-    sessionStorage.setItem('concepts', JSON.stringify(testSessions))
+    return users;
 };
