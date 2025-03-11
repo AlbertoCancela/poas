@@ -1,4 +1,4 @@
-<div id="initPoa-third" class="hidden flex-col p-6 space-y-6 opacity-0 translate-y-4 transition-all duration-300 ease-in-out">
+<div id="initPoa-third" class="hidden flex-col p-6 space-y-6 opacity-0 transition-all duration-300 ease-in-out">
         <h2 class="text-xl font-semibold text-center">Planeación Operativa Anual (Conceptos/actividades)    </h2>
             <!-- Tipo de cuenta -->
         <div class="flex space-x-4">
@@ -16,18 +16,21 @@
         </div>
         <!-- Concepto o actividad -->
         <div class="flex space-x-4">
-            <div class="flex-1">
+            <div class="basis-3/12">
                 <label for="fecha-ejecucion" class="block text-sm font-medium text-gray-300 mb-1">Fecha de ejecución</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="fecha-ejecucion" conceptItem='fechaEjecucion' class="concept auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
-                        <option selected disabled>Mes de ejecución</option>
-                        <option>Mes 1</option>
-                        <option>Mes 2</option>
-                    </select>
+                    <input type="date" id="fecha-ejecucionInicial" conceptItem='fechaEjecucionInicial' class="concept flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                </div>
+            </div>            
+            <div class="basis-3/12">
+                <label for="fecha-ejecucion" class="block text-sm font-medium text-gray-300 mb-1">Fecha de ejecución</label>
+                <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
+                    <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
+                    <input type="date" id="fecha-ejecucionFinal" conceptItem='fechaEjecucionFinal' class="concept flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                 </div>
             </div>
-            <div class="flex-1">
+            <div class="basis-6/12">
                 <label for="observaciones" class="block text-sm font-medium text-gray-300 mb-1">Concepto o actividad</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="h-16 inline-flex items-center px-3 text-gray-400"><i class="bi bi-textarea-t"></i></span>
@@ -38,7 +41,7 @@
         
         <!-- Unidad y cantidad -->
         <div class="flex space-x-4">
-            <div class="flex-1">
+            <div class="basis-3/12">
                 <label for="unidad" class="block text-sm font-medium text-gray-300 mb-1">Unidad</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
@@ -49,21 +52,21 @@
                     </select>
                 </div>
             </div>
-            <div class="flex-1">
+            <div class="basis-3/12">
                 <label for="cantidad" class="block text-sm font-medium text-gray-300 mb-1">Cantidad</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>
                     <input type="text" id="cantidad" conceptItem='cantidad' class="concept flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Cantidad">
                 </div>
             </div>
-            <div class="flex-1">
+            <div class="basis-3/12">
                 <label for="costo-unitario" class="block text-sm font-medium text-gray-300 mb-1">Costo unitario</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>
-                    <input input-action="fillImportes" type="text" id="costoUnitario" conceptItem='tipoCuenta' class="concept input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Costo unitario">
+                    <input input-action="fillImportes" type="text" id="costoUnitario" conceptItem='costoUnitario' class="concept input-field flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5" placeholder="Costo unitario">
                 </div>
             </div>
-            <div class="flex-1">
+            <div class="basis-3/12">
                 <label for="importes" class="block text-sm font-medium text-gray-300 mb-1">Importes</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-briefcase"></i></span>

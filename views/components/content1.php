@@ -7,7 +7,7 @@
                 <p class="font-roboto font-semibold"><?php echo strftime('%A, %d de %B del %Y')?></p>
             </div>
         </div>
-        <div class=" flex-1 flex p-6 justify-around"> 
+        <div class="flex-1 flex p-3 justify-around"> 
             <?php 
                     include_once 'components/content/' . $pathContent;
                 ?>

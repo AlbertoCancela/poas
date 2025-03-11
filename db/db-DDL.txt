@@ -1,3 +1,7 @@
+002293
+
+
+
 -- POAS_CUENTAS definition
 
 -- Drop table
