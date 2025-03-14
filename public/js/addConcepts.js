@@ -8,21 +8,26 @@ addConcept = () => {
     let hasError = conceptItem.some(item => {
         let conceptKey = item.getAttribute('conceptItem')
         let value = item.value.trim()
-        
-        if(formHandler.lengthVerification(value, 1)) return true
+        if(conceptKey == 'responsables') value = defineUsers()
+        if(formHandler.lengthVerification(value, 1)) {
+            item.focus()
+            return true
+        }  
 
         arrayItems[conceptKey] = value
-        return false // Continúa el bucle
-    });
+            return false
+        })
 
     if (hasError) {
-        console.warn("Error en la validación, ejecución detenida.");
+        // console.log(hasError)
+        formHandler.sweetAlertTimer('center', 'error', 'Error inesperado', 'Verifica que todos los campos sean correctos y no vacíos', 1600)
+        console.warn("Error en la validación, ejecución detenida.")
         return;
     }
 
     // Limpiar los campos solo si todo es válido
     // conceptItem.forEach(item => {
-    //     clearFields(item);
+    //     formHandler.clearFields(item);
     // });
     // conceptItem.forEach(item => {
     //     var conceptItem = item.getAttribute('conceptItem')
@@ -30,8 +35,11 @@ addConcept = () => {
     //     arrayItems[ conceptItem] = item
     // })
     // arrayItems['responsables'] = defineUsers()
-    console.log(arrayItems)
-    // sweetAlertTimer('top-end', 'success', 'Concepto guardado', '1000')
+    var conceptos = sessionStorage.getItem('test') || ''
+    console.log(conceptos)
+    arrayItems += conceptos
+
+    sessionStorage.setItem('test', JSON.stringify(arrayItems))
 }
 
 // var lengthVerification = (a,b, c = null) => {

@@ -29,8 +29,9 @@ class FormHandler {
             position: args[0],  // Posición de la alerta
             icon: args[1],      // Icono de la alerta
             title: args[2],     // Título de la alerta
+            text: args[3],
             showConfirmButton: false,
-            timer: args[3]      // Tiempo de duración
+            timer: args[4]      // Tiempo de duración
         });
     }
 }

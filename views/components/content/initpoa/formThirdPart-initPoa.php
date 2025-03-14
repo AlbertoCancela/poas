@@ -7,9 +7,7 @@
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
                     <select id="tipo-cuenta" conceptItem='tipoCuenta' class="concept auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
-                        <option selected disabled>Cuenta ejemplo</option>
-                        <option>cuenta 1</option>
-                        <option>cuenta 2</option>
+                        
                     </select>
                 </div>
             </div>

@@ -100,7 +100,7 @@ class AutoFill extends API{
                     var sql = 'SELECT * FROM POAS_CUENTAS'
                     const responseTC = await this.request('service-dml.php',{action: 'autofill_eje-rector', sql: sql})
                     if(!responseTC.success) return
-                    var htmlOptions = '<option disabled selected>Tipo de cuenta</option>'
+                    var htmlOptions = '<option value="" disabled selected>Tipo de cuenta</option>'
                     var i = 0
                     while(i < responseTC.data.length){
                         var value = responseTC.data[i].ID
