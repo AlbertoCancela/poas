@@ -3,7 +3,7 @@ header("Content-Type: application/json"); // 🔹 Asegura que PHP SIEMPRE devuel
 
 class DataBase {
     private $host = "localhost"; 
-    private $dbname = "/var/lib/firebird/data/POAS.fdb";
+    private $dbname = "/var/lib/firebird/data/poas.fdb";
     private $username = "SYSDBA";
     private $password = "masterkey";
     private $conn;

@@ -9,7 +9,7 @@
 </div>
 
 <div class="bg-gray-600 basis-3/12 shadow-custom_medium rounded-md p-10">
-    <p class=" text-white">
+    <p id="selectDescription" class="text-white">
         En este apartado aparecerán todas las descripciones de cada uno de los campos con los que se interactúe.
     </p>
 </div>

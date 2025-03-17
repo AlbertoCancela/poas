@@ -91,7 +91,7 @@ class AutoFill extends API{
                     while(i < responseER.data.length){
                         var value = responseER.data[i].ID
                         var label = responseER.data[i].NOMBRE
-                        htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+                        htmlOptions +=  '<option  value="'+value+'">'+label+'</option>'
                         i++
                     }
                     select.innerHTML = htmlOptions
@@ -105,7 +105,8 @@ class AutoFill extends API{
                     while(i < responseTC.data.length){
                         var value = responseTC.data[i].ID
                         var label = responseTC.data[i].NOMBRE
-                        htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+                        var description = responseTC.data[i].DESCRIPCION
+                        htmlOptions +=  '<option description="'+description+'" value="'+value+'">'+label+'</option>'
                         i++
                     }
                     select.innerHTML = htmlOptions
@@ -129,7 +130,8 @@ class AutoFill extends API{
                     while(i < responseU.data.length){
                         var value = responseU.data[i].ID
                         var label = responseU.data[i].NOMBRE
-                        htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+                        var description = responseU.data[i].DESCRIPCION
+                        htmlOptions +=  '<option description="'+description+'" value="'+value+'">'+label+'</option>'
                         i++
                     }
                     select.innerHTML = htmlOptions

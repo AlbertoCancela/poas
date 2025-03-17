@@ -34,10 +34,27 @@ class FormHandler {
             timer: args[4]      // Tiempo de duración
         });
     }
-}
 
-class FormFunctions extends FormHandler{
-    testFunction(){
-        return this.test()
+    saveObjectsToSessionStorage(newItem, sessionItem) {
+        let storedItems = sessionStorage.getItem(sessionItem);
+    
+        storedItems = storedItems ? JSON.parse(storedItems) : [];
+    
+        if (!Array.isArray(storedItems)) {
+            storedItems = [];
+        }
+        storedItems.push(newItem);
+        sessionStorage.setItem(sessionItem, JSON.stringify(storedItems));
+    }
+    
+    getConceptsFromSessionStorage() {
+    let storedItems = sessionStorage.getItem('conceptsPOA')
+    storedItems = storedItems ? JSON.parse(storedItems) : []
+    // Verificar que sea un array antes de recorrer
+    if (!Array.isArray(storedItems)) {
+        console.warn("Los datos en sessionStorage no son un array.")
+        return
+    }
+    return storedItems
     }
 }

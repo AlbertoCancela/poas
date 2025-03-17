@@ -58,6 +58,7 @@
 
 </script>
 <script>
+    sessionStorage.clear()
     new AutoFill('selectsInitPoa')
 </script>
 </html>

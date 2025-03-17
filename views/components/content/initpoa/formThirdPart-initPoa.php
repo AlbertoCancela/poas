@@ -6,7 +6,7 @@
                 <label for="tipo-cuenta" class="block text-sm font-medium text-gray-300 mb-1">Tipo de cuenta</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="tipo-cuenta" conceptItem='tipoCuenta' class="concept auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select id="tipo-cuenta" conceptItem='tipoCuenta' class="hasDescription concept auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         
                     </select>
                 </div>
@@ -43,7 +43,7 @@
                 <label for="unidad" class="block text-sm font-medium text-gray-300 mb-1">Unidad</label>
                 <div class="flex items-center bg-gray-700 rounded-md border border-gray-600">
                     <span class="inline-flex items-center px-3 text-gray-400"><i class="bi bi-diagram-3"></i></span>
-                    <select id="unidad" conceptItem='unidad' class="concept auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
+                    <select id="unidad" conceptItem='unidad' class="hasDescription concept auto-fill flex-1 bg-gray-800 text-white focus:ring-blue-500 focus:border-blue-500 rounded-md border-none p-2.5">
                         <option selected disabled>Unidad</option>
                         <option>Unidad 1</option>
                         <option>Unidad 2</option>
@@ -93,7 +93,7 @@
                 <button onclick="addConcept()" data-modal="" class="hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md">
                     Añadir concepto/actividad <i class="bi bi-plus-circle"></i>  
                 </button>
-                <button data-modal="conceptActivities" class="open-modal hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md w-9/12 mt-1">
+                <button onclick="showMyConcepts()" data-modal="conceptActivities" class="open-modal hover:bg-blue-400 border-2 border-blue-600 text-white font-semibold py-2 px-4 rounded-md w-9/12 mt-1">
                     Mis conceptos<i class="bi bi-list"></i>  
                 </button>
             </div>

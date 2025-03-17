@@ -8,7 +8,7 @@
         </div>
 
         <!-- Contenido con Collapsibles -->
-        <div class="basis-8/12 flex flex-col space-y-2 overflow-y-auto">
+        <div id="concepts-myConcepts" class="basis-8/12 flex flex-col space-y-2 overflow-y-auto p-4 bg-white rounded-lg shadow-md">
             <!-- Concepto 1 -->
             <div class="border rounded-lg">
                 <button class="toggle-collapse w-full text-left p-3 bg-gray-100 hover:bg-gray-200 rounded-t-lg flex justify-between items-center">

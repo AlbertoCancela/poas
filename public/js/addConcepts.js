@@ -29,35 +29,61 @@ addConcept = () => {
     // conceptItem.forEach(item => {
     //     formHandler.clearFields(item);
     // });
-    // conceptItem.forEach(item => {
-    //     var conceptItem = item.getAttribute('conceptItem')
-    //     var item = item.value
-    //     arrayItems[ conceptItem] = item
-    // })
-    // arrayItems['responsables'] = defineUsers()
-    var conceptos = sessionStorage.getItem('test') || ''
-    console.log(conceptos)
-    arrayItems += conceptos
 
-    sessionStorage.setItem('test', JSON.stringify(arrayItems))
+    formHandler.saveObjectsToSessionStorage(arrayItems, 'conceptsPOA')
+    let concepts = formHandler.getConceptsFromSessionStorage()
+    console.log(concepts)
+    showMyConcepts(concepts)
 }
 
-// var lengthVerification = (a,b, c = null) => {
-//     if(a.length > b && a.length <= c){
-//         return users
-//     }
-//     return false
-// }
+var showMyConcepts = () => {
+    let formHandler = new FormHandler();
+    let concepts = formHandler.getConceptsFromSessionStorage()
 
-// var sweetAlertTimer = (...args) => {
-//     Swal.fire({
-//         position: args[0],
-//         icon: args[1],
-//         title: args[2],
-//         showConfirmButton: false,
-//         timer: args[3]
-//     });
-// }
+    let conceptsContainer = document.getElementById('concepts-myConcepts');
+    conceptsContainer.innerHTML = ""; // Limpiar antes de agregar nuevos elementos
+
+    let myConcepts = "";
+
+    concepts.forEach((concept, index) => {
+        myConcepts += `
+            <div class="border rounded-lg">
+                <button class="toggle-collapse w-full text-left p-3 bg-gray-100 hover:bg-gray-200 rounded-t-lg flex justify-between items-center">
+                    <span>Concepto ${index + 1}</span>
+                    <span class="arrow transition-transform duration-300">▼</span>
+                </button>
+                <div class="collapse-content max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-out">
+                    <p><b>Tipo de cuenta: </b></p>${concept.tipoCuenta}
+                    <p><b>Fecha de Ejecución: </b></p>${concept.fechaEjecucionInicial} - ${concept.fechaEjecucionFinal}
+                    <p><b>Concepto/actividad: </b></p>${concept.conceptoActividad || "Sin información"}
+                    <p><b>Unidad: </b></p>${concept.unidad}
+                    <p><b>Cantidad: </b></p>${concept.cantidad}
+                    <p><b>Costo Unitario: </b></p>${concept.costoUnitario}
+                    <p><b>Importe: </b></p>${concept.importe}
+                    <p><b>Responsable(s): </b></p>${Array.isArray(concept.responsables) ? concept.responsables.join(', ') : "N/A"}
+                </div>
+            </div>
+        `;
+    });
+
+    conceptsContainer.insertAdjacentHTML("beforeend", myConcepts);
+
+    // Agregar eventos a los botones de colapsar con Tailwind
+    document.querySelectorAll(".toggle-collapse").forEach(button => {
+        button.addEventListener("click", function () {
+            let content = this.nextElementSibling;
+
+            content.classList.toggle("max-h-0");
+            content.classList.toggle("opacity-0");
+            content.classList.toggle("max-h-[500px]");
+            content.classList.toggle("opacity-100");
+
+            // Rotar la flecha
+            let arrow = this.querySelector(".arrow");
+            arrow.classList.toggle("rotate-180");
+        });
+    });
+};
 
 var defineUsers = () => {
     var tags = document.querySelectorAll('.userTag')
@@ -69,7 +95,3 @@ var defineUsers = () => {
     })
     return users
 }
-
-// var clearFields = ( item ) => {
-//     item.value = ""
-// }

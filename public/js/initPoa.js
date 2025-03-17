@@ -23,3 +23,15 @@ function initPoa_changeView(firstElement, secondElement, animation = null) {
 
     }, 300); // Coincide con `duration-300`
 }
+
+document.querySelectorAll('.hasDescription').forEach(select => {
+    select.addEventListener('change', function() {
+        let selectedOption = this.options[this.selectedIndex]; // Obtiene la opción seleccionada
+        let description = selectedOption.getAttribute('description'); // Obtiene la descripción
+
+        
+        document.getElementById('selectDescription').textContent = description || 'Descripción no disponible';
+        
+
+    });
+});
