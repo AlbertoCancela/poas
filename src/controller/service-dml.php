@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             INNER JOIN POAS_PROYECTOMETA ppm ON pp.ID_PDI_PROYECTOMETA = ppm.ID
                             INNER JOIN POAS_LINEASACCION pla ON ppm.ID_LINEAS_ACCION = pla.ID
                             INNER JOIN POAS_EJERECTOR pe ON pla.ID_EJE_RECTOR = pe.ID
-                            ORDER BY pp.FECHA_ELABORACION DESC;"];
+                            ORDER BY pp.FECHA_ELABORACION DESC;",
+                'afsPd' => "SELECT * FROM POAS_CONCEPTOACTIVIDAD WHERE FOLIO = :id"];
     
     if($data['action'] == 'obtainData'){
         $sql = $sqlQuery[$data['sql']];
@@ -34,6 +35,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             echo json_encode($response); // Si es un array PHP, lo convierte a JSON
         }
+    }
+    if($data['action'] == 'obtainConceptsByFolio'){
+        $sql = $sqlQuery[$data['sql']];
+        $folio = $data['folio'] ?? null; // Si no existe, asigna null
+        if (empty($folio)) {
+            echo json_encode(["success" => false, "error" => "El folio está vacío o nulo"]);
+            exit;
+        }
+        $sql = "SELECT * FROM POAS_CONCEPTOACTIVIDAD WHERE FOLIO = ?";
+        $params = [$folio]; // Firebird usa ? en lugar de :id
+        $response = $object->simpleQuery($sql, $params);
+        // echo json_encode(["debug_folio" => $folio]); // Si es un array PHP, lo convierte a JSON
+        echo json_encode($response);
     }
     if ($data['action'] == 'autofill_area') {
         $response = $object->autofill_area($data['sql']);

@@ -44,8 +44,8 @@ class QueryHandler extends DataBase {
     public function test() {
         return $this->executeQuery("SELECT * FROM POAS_USUARIOS");
     }
-    public function simpleQuery ( $sql ){
-        return $this->executeQuery( $sql );
+    public function simpleQuery ( $sql, $params = [] ){
+        return $this->executeQuery( $sql, $params );
     }
     public function autofill_area( $sql ){
         return $this->executeQuery( $sql );

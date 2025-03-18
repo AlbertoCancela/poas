@@ -91,3 +91,31 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 });
 
+function showPoasDetails( element ) {
+    const modal = document.getElementById("showPoasDetails");
+    let object = new AutoFill()
+    let folio = element.getAttribute('data-folio')
+    object.showPoasDetails(folio)
+    // Mostrar el modal
+    modal.classList.remove("opacity-0", "invisible");
+    modal.classList.add("opacity-100", "visible", "scale-100");
+
+    // Cerrar el modal al hacer clic en el botón
+    const closeButton = modal.querySelector(".close-modal");
+    closeButton.addEventListener("click", closeModal);
+
+    // Cerrar el modal si el usuario hace clic fuera del contenido
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+}
+
+// Función para cerrar el modal
+function closeModal() {
+    const modal = document.getElementById("showPoasDetails");
+
+    modal.classList.remove("opacity-100", "visible", "scale-100");
+    modal.classList.add("opacity-0", "invisible");
+}

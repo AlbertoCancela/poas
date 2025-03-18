@@ -11,7 +11,7 @@
     </button> -->
 
     <!-- Botones hasta abajo -->
-    <div class="grid grid-cols-2 gap-2 mt-auto">
+    <div onclick="showPoasDetails()" class="grid grid-cols-2 gap-2 mt-auto">
         <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-blue-600">
             Aprobar POA
         </button>

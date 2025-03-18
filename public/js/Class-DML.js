@@ -41,6 +41,7 @@ class AutoFill extends API{
             selectsInitPoa: () => this.selectsInitPoa(),
             obtainUsersData: () => this.obtainUsersData(),
             fillSearchWithRecentPoas: () => this.fillSearchWithRecentPoas(),
+            showPoasDetails: (folio) => this.showPoasDetails(folio),
             test: () => this.test(),
             default: () => console.warn(`La acción '${this.action}' no es reconocida.`)
         }
@@ -156,7 +157,7 @@ class AutoFill extends API{
             let autor = response.data[i].AUTOR
             let ejerector = response.data[i].EJE_RECTOR
             let ejercicioFiscal = response.data[i].EJERCICIO_FISCAL
-            htmlCards +=  `<div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+            htmlCards +=  `<div onclick="showPoasDetails(this)" data-folio="${folio}" class=" bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center hover-animate">
                                 <div>
                                     <p class="text-green-400 font-bold">${folio}</p>
                                     <p class="font-semibold">${area}</p>
@@ -168,7 +169,57 @@ class AutoFill extends API{
             i++
         }
         searchResultsContainer.innerHTML = htmlCards
+        setTimeout(() => {
+            document.querySelectorAll('.hover-animate').forEach(card => {
+                card.classList.add('transition-all', 'duration-300', 'hover:bg-gray-600', 'hover:shadow-lg', 'hover:-translate-y-1');
+            });
+        }, 100);
     }
+    async showPoasDetails(folio) {
+        var sql = "afsPd";
+        const body = { action: "obtainConceptsByFolio", sql: sql, folio: folio };
+        const response = await this.request("service-dml.php", body);
+        
+        console.log(response); // Para verificar si la API responde bien
+    
+        if (!response.success) return;
+    
+        const showContent = document.getElementById("concepts-myConcepts");
+        console.log(showContent)
+        let htmlCards = "";
+        let i = 0;
+    
+        while (i < response.data.length) {
+            htmlCards += `
+                <details class="border border-gray-300 rounded-md bg-gray-100 open:bg-gray-200 transition">
+                    <summary class="w-full text-left p-2 font-medium bg-gray-200 hover:bg-gray-300 rounded-t-md cursor-pointer">
+                        Concepto ${i + 1}
+                    </summary>
+                    <div class="p-2 text-sm text-gray-700 flex flex-col">
+                        <div class="border border-gray-600">
+                            <p>Folio: </p>
+                            <p>Área: </p>
+                            <p>Autor: </p>
+                        </div>
+                        <div>
+                        <input type="text" class="bg-gray-100">
+                        <p class="font-medium text-gray-800">Fecha de Ejecución (inicio):</p> 
+                        <p class="font-medium text-gray-800">Fecha de Ejecución (fin):</p>  
+                        <p class="font-medium text-gray-800">Tipo de Cuenta:</p> 
+                        <p class="font-medium text-gray-800">Unidad:</p> 
+                        <p class="font-medium text-gray-800">Concepto:</p> 
+                        <p class="font-medium text-gray-800">Costo Unitario:</p> 
+                        <p class="font-medium text-gray-800">Cantidad:</p> 
+                            <p class="font-medium text-gray-800">Importe Total:</p> 
+                        </div>
+                    </div>
+                </details>`; // ✅ Se cierra correctamente
+            i++;
+        }
+    
+        showContent.innerHTML = htmlCards; // ✅ Ahora se renderiza correctamente
+    }
+    
 }
 
 class DBHandler extends API {
