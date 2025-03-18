@@ -9,7 +9,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $object = new QueryHandler();
 
     $sqlQuery = ['au' => "SELECT * FROM POAS_USUARIOS pu",
-                'ac' => "SELECT * FROM POAS_CUENTAS"];
+                'ac' => "SELECT * FROM POAS_CUENTAS",
+                'afw5' => "SELECT 
+                                FIRST 6
+                                pp.FOLIO, 
+                                ps.NOMBRE AS AREA, 
+                                pu.NOMBRE AS AUTOR, 
+                                pe.NOMBRE AS EJE_RECTOR,
+                                pp.EJERCICIO_FISCAL 
+                            FROM POAS_POAS pp
+                            INNER JOIN POAS_SECCIONES ps ON pp.FOLIO = ps.ID
+                            INNER JOIN POAS_USUARIOS pu ON pp.AUTOR = pu.ID
+                            INNER JOIN POAS_PROYECTOMETA ppm ON pp.ID_PDI_PROYECTOMETA = ppm.ID
+                            INNER JOIN POAS_LINEASACCION pla ON ppm.ID_LINEAS_ACCION = pla.ID
+                            INNER JOIN POAS_EJERECTOR pe ON pla.ID_EJE_RECTOR = pe.ID
+                            ORDER BY pp.FECHA_ELABORACION DESC;"];
     
     if($data['action'] == 'obtainData'){
         $sql = $sqlQuery[$data['sql']];
@@ -53,9 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $response = $object->simpleQuery($data['sql']);
         echo json_encode($response);
     }
-    if ($data['action'] == 'insertPoa') {
+    if ($data['action'] == 'insertPoa') { //Corregir más tarde: 1.- Agregar el campo de fecha ejecucion final en conceptos y agregar a los responsables de acuerdo al concepto
         $params = $data['params'];
-        // Asignar valores con fallback en caso de que no existan
+        error_log("📥 Datos recibidos en insertPoa: " . json_encode($params));
+    
+        // Asignar valores con fallback
         $fecha_elaboracion = $params['fecha-elaboracion'] ?? date('Y-m-d');
         $ejercicio_fiscal = $params['ejercicio-fiscal'] ?? date('Y');
         $descripcion_general = $params['descripcion-general'] ?? 'Sin descripción';
@@ -69,16 +85,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $proyecto_meta = $params['proyecto-meta'] ?? NULL;
         $descripcion_observaciones = $params['descripcion-observaciones'] ?? NULL;
         $autor = 1; // Puedes cambiar esto por el usuario autenticado
+    
+        $lastIdQuery = "SELECT MAX(FOLIO) AS LAST_ID FROM POAS_POAS";
+        $lastIdResponse = $object->executeQuery($lastIdQuery);
+        $lastId = ($lastIdResponse["success"] && !empty($lastIdResponse["data"])) 
+            ? $lastIdResponse["data"][0]["LAST_ID"] 
+            : 0;
+        
+        $idPoa = $lastId + 1;
 
+        // Insertar POA
         $sql = "INSERT INTO POAS_POAS 
                 (FOLIO, FECHA_ELABORACION, EJERCICIO_FISCAL, DESCRIPCION, FECHA_INICIO, FECHA_TERMINO, ID_AREA, 
                 TIPO_GASTO, ID_PDI_PROYECTOMETA, OBSERVACIONES, AUTOR) 
                 VALUES 
-                (3,:fecha_elaboracion, :ejercicio_fiscal, :descripcion_general, :fecha_inicio, :fecha_termino, :area, 
+                (:idPoa,:fecha_elaboracion, :ejercicio_fiscal, :descripcion_general, :fecha_inicio, :fecha_termino, :area, 
                 :tipo_gasto, :proyecto_meta, :descripcion_observaciones, :autor)";
-
-        // Parámetros a pasar en la consulta
+    
         $queryParams = [
+            ":idPoa" => $idPoa,
             ":fecha_elaboracion" => $fecha_elaboracion,
             ":ejercicio_fiscal" => $ejercicio_fiscal,
             ":descripcion_general" => $descripcion_general,
@@ -90,9 +115,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             ":descripcion_observaciones" => $descripcion_observaciones,
             ":autor" => $autor
         ];
-
+    
         $response = $object->insertPoa($sql, $queryParams);
-        echo json_encode($response);
+        if (!$response["success"]) {
+            error_log("❌ Error al insertar el POA: " . json_encode($response));
+        }
+        
+        if ($response["success"]) {
+            $folio = $response["folio"]; // Obtener el FOLIO del POA insertado
+    
+            // 🔹 Obtener el último ID en POAS_CONCEPTOACTIVIDAD
+            $lastIdQuery = "SELECT MAX(ID) AS LAST_ID FROM POAS_CONCEPTOACTIVIDAD";
+            $lastIdResponse = $object->executeQuery($lastIdQuery);
+    
+            // Si hay resultados, tomamos el último ID y sumamos 1, si no, empezamos en 1
+            $lastId = ($lastIdResponse["success"] && !empty($lastIdResponse["data"])) ? $lastIdResponse["data"][0]["LAST_ID"] : 0;
+            $newId = $lastId + 1;
+    
+            // Ahora insertamos los conceptos
+            if (!empty($params["conceptsPOA"])) {
+                foreach ($params["conceptsPOA"] as $concept) {
+                    $sqlConcept = "INSERT INTO POAS_CONCEPTOACTIVIDAD 
+                                    (ID, FOLIO, TIPO_CUENTA, FECHA_EJECUCION, CONCEPTO, UNIDAD, CANTIDAD, COSTO_UNITARIO, IMPORTE_TOTAL, OBSERVACIONES) 
+                                    VALUES 
+                                    (:id, :folio, :tipoCuenta, :fechaEjecucion, :conceptoActividad, :unidad, :cantidad, :costoUnitario, :importe, :observaciones)";
+                    
+                    $queryParamsConcept = [
+                        ":id" => $newId, // Usamos el ID autoincrementado manualmente
+                        ":folio" => $folio,
+                        ":tipoCuenta" => $concept["tipoCuenta"],
+                        ":fechaEjecucion" => $concept["fechaEjecucionInicial"], // Asumimos fecha inicial
+                        ":conceptoActividad" => $concept["conceptoActividad"],
+                        ":unidad" => $concept["unidad"],
+                        ":cantidad" => $concept["cantidad"],
+                        ":costoUnitario" => $concept["costoUnitario"],
+                        ":importe" => $concept["importe"],
+                        ":observaciones" => NULL // Puedes agregar observaciones si existen
+                    ];
+    
+                    $object->executeQuery($sqlConcept, $queryParamsConcept);
+                    $newId++; // Incrementamos el ID para el siguiente concepto
+                }
+            }
+    
+            echo json_encode(["success" => true, "message" => "POA y conceptos insertados correctamente", "folio" => $folio]);
+        } else {
+            echo json_encode(["success" => false, "message" => "Error al insertar el POA"]);
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 <?php
     setlocale(LC_TIME, 'es_MX.UTF-8');
     date_default_timezone_set('America/Mexico_City');  // Zona horaria de México
-    $pathContent = 'content1-verPoas.php';
+    $pathContent = 'verpoas/content1.php';
     $pageContent = array("title" => 'INICIO'); 
 ?>
 <!DOCTYPE html>
@@ -23,4 +23,10 @@
     </main>
 </body>
 <script src="../public/js/sideBarToggle.js"></script>
+<script src="../public/js/Class-DML.js"></script>
+<script>
+    var objectDML = new AutoFill();
+    objectDML.fillSearchWithRecentPoas();
+
+</script>
 </html>

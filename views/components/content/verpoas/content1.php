@@ -1,8 +1,84 @@
-<div class=" bg-custom_gray basis-3/12 shadow-custom_medium rounded-md">
-  
+
+<div class="bg-gray-300 basis-3/12 shadow-lg rounded-lg p-4 flex flex-col justify-between h-full gap-6">
+    <div>
+        <label for="search" class="block font-semibold text-gray-700">Buscar Poas</label>
+        <input id="search" type="text" class="w-full mt-2 p-2 border rounded-md focus:ring focus:ring-gray-300" placeholder="Folio / Área">
+    </div>
+    <p class="text-gray-700">Al hacer clic en cualquiera de los poas, se abrirá una ventana interactuable</p>
+    <!-- <button class="bg-gray-500 text-white py-2 px-4 rounded-md flex items-center justify-between">
+        Filtrar
+        <span class="ml-2">🔽</span>
+    </button> -->
+
+    <!-- Botones hasta abajo -->
+    <div class="grid grid-cols-2 gap-2 mt-auto">
+        <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-blue-600">
+            Aprobar POA
+        </button>
+        <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-green-600">
+            Sugerir Edición
+        </button>
+        <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-gray-600">
+            Imprimir Excel
+        </button>
+        <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-gray-600">
+            <!-- Espacio vacío si no hay contenido -->
+        </button>
+    </div>
 </div>
 
-<div class="bg-custom_gray basis-8/12 shadow-custom_medium rounded-md p-4 overflow-y-auto max-h-[screen]">
+<!-- Contenedor de resultados (derecha, 8/12 del ancho total) -->
+<div class="bg-gray-300 basis-8/12 shadow-lg rounded-lg p-4 overflow-y-auto max-h-[90vh]">
+    <h2 class="text-gray-700 text-lg font-semibold mb-4 text-right">RESULTADOS DE BÚSQUEDA</h2>
+    <div id="searchResultsContainer" class="space-y-4 max-h-[70vh] overflow-y-auto">
+        <!-- Tarjetas de resultados -->
+        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-green-400 font-bold">12345</p>
+                <p class="font-semibold">Coordinación de Sistemas</p>
+                <p class="text-sm">Alberto Josué Cancela Arredondo</p>
+                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
+            </div>
+            <p class="text-gray-300 text-lg">2026</p>
+        </div>
+
+        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-green-400 font-bold">54321</p>
+                <p class="font-semibold">Dirección de Gestión de la Calidad</p>
+                <p class="text-sm">Daniel Zamora</p>
+                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
+            </div>
+            <p class="text-gray-300 text-lg">2026</p>
+        </div>
+
+        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-green-400 font-bold">54321</p>
+                <p class="font-semibold">Dirección de Gestión de la Calidad</p>
+                <p class="text-sm">Daniel Zamora</p>
+                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
+            </div>
+            <p class="text-gray-300 text-lg">2025</p>
+        </div>
+
+        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-green-400 font-bold">12345</p>
+                <p class="font-semibold">Coordinación de Sistemas</p>
+                <p class="text-sm">Alberto Josué Cancela Arredondo</p>
+                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
+            </div>
+            <p class="text-gray-300 text-lg">2024</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--
   <h2 class="text-center font-bold text-lg uppercase">Planeación Operativa Anual de Actividades</h2>
 
   <div class="grid grid-cols-2 gap-4 text-sm mt-2 border border-gray-300 p-2">
@@ -69,5 +145,4 @@
     </table>
   </div>
 
-  <div class="text-right font-bold mt-2">Costo estimado del proyecto: $309,500.00</div>
-</div>
+  <div class="text-right font-bold mt-2">Costo estimado del proyecto: $309,500.00</div> -->

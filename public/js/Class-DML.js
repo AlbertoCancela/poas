@@ -40,6 +40,7 @@ class AutoFill extends API{
         return {
             selectsInitPoa: () => this.selectsInitPoa(),
             obtainUsersData: () => this.obtainUsersData(),
+            fillSearchWithRecentPoas: () => this.fillSearchWithRecentPoas(),
             test: () => this.test(),
             default: () => console.warn(`La acción '${this.action}' no es reconocida.`)
         }
@@ -60,7 +61,7 @@ class AutoFill extends API{
         return suggestions
     }
     test (){
-        console.log('xd')
+        console.log('xd chiggaaa')
     }
     selectsInitPoa (){
         selects = document.querySelectorAll('.auto-fill');
@@ -91,7 +92,8 @@ class AutoFill extends API{
                     while(i < responseER.data.length){
                         var value = responseER.data[i].ID
                         var label = responseER.data[i].NOMBRE
-                        htmlOptions +=  '<option  value="'+value+'">'+label+'</option>'
+                        var description = responseER.data[i].DESCRIPCION
+                        htmlOptions +=  '<option description="'+description+'" value="'+value+'">'+label+'</option>'
                         i++
                     }
                     select.innerHTML = htmlOptions
@@ -139,6 +141,34 @@ class AutoFill extends API{
             }
         })
     }
+    async fillSearchWithRecentPoas(){
+        var sql = "afw5";
+        const body = {action: 'obtainData', sql: sql}
+        const response = await this.request('service-dml.php', body)
+        if(!response.success) return
+        console.log(response.data)
+        const searchResultsContainer = document.getElementById('searchResultsContainer');
+        let htmlCards = ""
+        let i = 0
+        while(i < response.data.length){
+            let folio = response.data[i].FOLIO
+            let area = response.data[i].AREA
+            let autor = response.data[i].AUTOR
+            let ejerector = response.data[i].EJE_RECTOR
+            let ejercicioFiscal = response.data[i].EJERCICIO_FISCAL
+            htmlCards +=  `<div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+                                <div>
+                                    <p class="text-green-400 font-bold">${folio}</p>
+                                    <p class="font-semibold">${area}</p>
+                                    <p class="text-sm">${autor}</p>
+                                    <p class="text-xs text-gray-300">${ejerector}</p>
+                                </div>
+                                <p class="text-gray-300 text-lg">${ejercicioFiscal}</p>
+                            </div>`
+            i++
+        }
+        searchResultsContainer.innerHTML = htmlCards
+    }
 }
 
 class DBHandler extends API {
@@ -185,7 +215,7 @@ class DBHandler extends API {
         while(i < response.data.length){
             var value = response.data[i].ID
             var label = response.data[i].NOMBRE
-            htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+            htmlOptions +=  '<option  value="'+value+'">'+label+'</option>'
             i++
         }
         selectSubArea.innerHTML = htmlOptions
@@ -195,34 +225,36 @@ class DBHandler extends API {
         const body = {action: 'fillSubArea', sql: sql, params: {id: this.element1.value}}
         const response = await this.request('service-dml.php', body)
         if(!response.success) return
-        console.log(response.data)
-        const selectLineaAcction = document.getElementById('linea-accion');
+        // console.log(response.data)
+        const selectLineaAction = document.getElementById('linea-accion');
         var htmlOptions = '<option disabled selected>Líneas de acción</option>'
         var i = 0
         while(i < response.data.length){
             var value = response.data[i].ID
             var label = response.data[i].NOMBRE
-            htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+            var description = response.data[i].DESCRIPCION
+            htmlOptions +=  '<option description="'+description+'" value="'+value+'">'+label+'</option>'
             i++
         }
-        selectLineaAcction.innerHTML = htmlOptions
+        selectLineaAction.innerHTML = htmlOptions
     }
     async fillProyectoMeta(){
         var sql = "SELECT * FROM POAS_PROYECTOMETA WHERE ID_LINEAS_ACCION = :id";
         const body = {action: 'fillSubArea', sql: sql, params: {id: this.element1.value}}
         const response = await this.request('service-dml.php', body)
         if(!response.success) return
-        console.log(response.data)
-        const selectLineaAcction = document.getElementById('proyecto-meta');
+        // console.log(response.data)
+        const selectLineaAction = document.getElementById('proyecto-meta');
         var htmlOptions = '<option disabled selected>Proyecto / meta</option>'
         var i = 0
         while(i < response.data.length){
             var value = response.data[i].ID
             var label = response.data[i].NOMBRE
-            htmlOptions +=  '<option value="'+value+'">'+label+'</option>'
+            var description = response.data[i].DESCRIPCION
+            htmlOptions +=  '<option description="'+description+'" value="'+value+'">'+label+'</option>'
             i++
         }
-        selectLineaAcction.innerHTML = htmlOptions
+        selectLineaAction.innerHTML = htmlOptions
     }
 }
 
@@ -231,26 +263,34 @@ class DBHandler extends API {
 async function provisionalInsertPoa() {
     const formData = {};
 
-    // Obtener todos los inputs, selects y textareas
-    const inputs = document.querySelectorAll("#initPoa-first input, #initPoa-first textarea, #initPoa-first select, #initPoa-second input, #initPoa-second textarea, #initPoa-second select, #initPoa-third input, #initPoa-third textarea, #initPoa-third select");
-
-    inputs.forEach(input => {
-        if (input.type === "radio") {
-            if (input.checked) {
-                formData[input.name] = input.id;
-            }
-        } else if (input.type === "checkbox") {
-            formData[input.id] = input.checked;
-        } else {
-            formData[input.id] = input.value.trim();
+    document.querySelectorAll("[id^=initPoa-] input:not(#initPoa-third *), [id^=initPoa-] textarea:not(#initPoa-third *), [id^=initPoa-] select:not(#initPoa-third *)").forEach(input => {
+        switch (input.type) {
+            case "radio":
+                if (input.checked) formData[input.name] = input.id;
+                break;
+            case "checkbox":
+                formData[input.id] = input.checked;
+                break;
+            default:
+                const value = input.value.trim();
+                if (value !== "") formData[input.id] = value;
+                break;
         }
     });
 
-    // Construcción del body para el fetch
+    if (Object.keys(formData).length === 0) {
+        console.warn("❌ No hay datos para enviar.");
+        return;
+    }
+
+    // Obtener los conceptos almacenados en sessionStorage
+    let storedItems = sessionStorage.getItem('conceptsPOA');
+    let conceptsPOA = storedItems ? JSON.parse(storedItems) : [];
+
     const requestBody = {
-        action: "insertPoa", // Acción para el backend
-        sql: "", // Aquí debes colocar tu consulta SQL en el backend
-        params: formData // Enviamos los datos del formulario
+        action: "insertPoa",
+        sql: "",
+        params: { ...formData, conceptsPOA } // Enviamos los datos del formulario + conceptos
     };
 
     try {
@@ -261,13 +301,21 @@ async function provisionalInsertPoa() {
         });
 
         const result = await response.json();
-        if(result.success){
+        console.log("📥 Respuesta del servidor:", result);
+
+        if (result.success) {
             Swal.fire({
                 title: "Registro exitoso!",
-                text: "¡El poa se ha registrado en la base de datos!",
+                text: `¡El POA y sus conceptos se han registrado con FOLIO: ${result.folio}!`,
                 icon: "success"
-              });
-        };
+            });
+        } else {
+            Swal.fire({
+                title: "Error!",
+                text: result.message || "Hubo un problema con el registro.",
+                icon: "error"
+            });
+        }
     } catch (error) {
         console.error("❌ Error en la solicitud:", error);
     }

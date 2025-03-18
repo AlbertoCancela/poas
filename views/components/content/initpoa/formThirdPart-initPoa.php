@@ -100,7 +100,7 @@
         </div>
         <div class="flex space-x-4">
             <div class="flex flex-1 justify-center items-center">
-                <button onclick="" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
+                <button onclick="provisionalInsertPoa()" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-2 h-24 rounded-full">
                     Finalizar
                 </button>
             </div>

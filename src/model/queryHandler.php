@@ -23,6 +23,12 @@ class DataBase {
             $stmt = $this->conn->prepare($sql);
             $stmt->execute($params);
     
+            if (stripos($sql, "INSERT") === 0) {
+                // Obtener el último FOLIO insertado
+                $folio = $this->conn->query("SELECT MAX(FOLIO) AS FOLIO FROM POAS_POAS")->fetch(PDO::FETCH_ASSOC);
+                return ["success" => true, "message" => "Registro insertado correctamente", "folio" => $folio['FOLIO']];
+            }
+
             if (stripos($sql, "SELECT") === 0) {
                 return ["success" => true, "data" => $stmt->fetchAll(PDO::FETCH_ASSOC)];
             }
@@ -51,4 +57,5 @@ class QueryHandler extends DataBase {
         return $this->executeQuery($sql, $params);
     }
 }
+
 ?>

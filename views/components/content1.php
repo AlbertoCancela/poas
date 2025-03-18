@@ -9,8 +9,8 @@
         </div>
         <div class="flex-1 flex p-3 justify-around"> 
             <?php 
-                    include_once 'components/content/' . $pathContent;
-                ?>
+                include_once 'components/content/' . $pathContent;
+            ?>
         </div>
     </div>
 </div>
