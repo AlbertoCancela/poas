@@ -188,29 +188,38 @@ class AutoFill extends API{
         console.log(showContent)
         let htmlCards = "";
         let i = 0;
-    
+        console.log(response)
         while (i < response.data.length) {
+            let folio = response.data[i].FOLIO
+            let area = response.data[i].AREA
+            let autor = response.data[i].AUTOR
+            let fechaejecucion = response.data[i].FECHA_EJECUCION
+            let cuenta = response.data[i].CUENTA
+            let unidad = response.data[i].UNIDAD
+            let concepto = response.data[i].CONCEPTO
+            let costoUnitario = response.data[i].COSTO_UNITARIO
+            let cantidad = response.data[i].CANTIDAD
+            let importeTotal = response.data[i].IMPORTE_TOTAL
             htmlCards += `
                 <details class="border border-gray-300 rounded-md bg-gray-100 open:bg-gray-200 transition">
                     <summary class="w-full text-left p-2 font-medium bg-gray-200 hover:bg-gray-300 rounded-t-md cursor-pointer">
                         Concepto ${i + 1}
                     </summary>
-                    <div class="p-2 text-sm text-gray-700 flex flex-col">
-                        <div class="border border-gray-600">
-                            <p>Folio: </p>
-                            <p>Área: </p>
-                            <p>Autor: </p>
+                    <div class="p-2 text-sm text-gray-800 flex flex-col">
+                        <div class="">
+                            <p>Folio: ${folio}</p>
+                            <p>Área: ${area}</p>
+                            <p>Autor: ${autor}</p>
                         </div>
                         <div>
-                        <input type="text" class="bg-gray-100">
-                        <p class="font-medium text-gray-800">Fecha de Ejecución (inicio):</p> 
-                        <p class="font-medium text-gray-800">Fecha de Ejecución (fin):</p>  
-                        <p class="font-medium text-gray-800">Tipo de Cuenta:</p> 
-                        <p class="font-medium text-gray-800">Unidad:</p> 
-                        <p class="font-medium text-gray-800">Concepto:</p> 
-                        <p class="font-medium text-gray-800">Costo Unitario:</p> 
-                        <p class="font-medium text-gray-800">Cantidad:</p> 
-                            <p class="font-medium text-gray-800">Importe Total:</p> 
+                            <p class="font-medium text-gray-800">Fecha de Ejecución (inicio): ${fechaejecucion}</p>
+                            <p class="font-medium text-gray-800">Fecha de Ejecución (fin): ${fechaejecucion}</p>  
+                            <p class="font-medium text-gray-800">Tipo de Cuenta: ${cuenta}</p> 
+                            <p class="font-medium text-gray-800">Unidad: ${unidad}</p> 
+                            <p class="font-medium text-gray-800">Concepto: ${concepto}</p> 
+                            <p class="font-medium text-gray-800">Costo Unitario: ${costoUnitario}</p> 
+                            <p class="font-medium text-gray-800">Cantidad: ${cantidad}</p> 
+                            <p class="font-medium text-gray-800">Importe Total: ${importeTotal}</p> 
                         </div>
                     </div>
                 </details>`; // ✅ Se cierra correctamente

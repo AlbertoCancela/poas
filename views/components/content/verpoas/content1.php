@@ -72,77 +72,59 @@
             <p class="text-gray-300 text-lg">2024</p>
         </div>
     </div>
+    <div id="searchResultsContainer" class="hidden space-y-4 max-h-[70vh] overflow-y-auto p-4">
+    <div class="bg-gray-700 text-white p-6 rounded-lg shadow-lg">
+      <div class="flex justify-between items-center border-b border-gray-600 pb-2 mb-4">
+        <span class="text-lg font-semibold text-green-400">1003</span>
+        <span class="text-green-400 font-semibold">Estratégico</span>
+      </div>
+      <h2 class="text-xl font-bold">COORDINACIÓN DE SISTEMAS, REDES Y DESARROLLO TECNOLÓGICO</h2>
+      <p class="text-gray-300 mt-2">Alberto Josué Cancela Arredondo</p>
+      <p class="text-gray-400">Gestión administrativa institucional</p>
+      <p class="text-gray-400 mt-2">Proyecto/meta <span class="text-yellow-400 ">1.4</span></p>
+      <div class="flex justify-between text-gray-400 mt-2 text-sm">
+        <p>Fecha de creación: <span class="text-yellow-400">20/03/2024</span></p>
+        <p>Ejercicio Fiscal: <span class="text-yellow-400">2025</span></p>
+        <p>Fecha de ejecución: <span class="text-yellow-400">20/03/2024 - 21/03/2024</span></p>
+      </div>
+      <p class="text-gray-400 mt-4 text-sm">
+        Lorem ipsum dolo dolo dolo dolo dolooooo Lorem ipsum dolo dolo dolo dolo dolo dolo...
+      </p>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+  <select class="w-full bg-gray-800 text-white p-2 rounded-md border border-gray-600">
+    <option>Seleccionar concepto del POA</option>
+  </select>
+  
+  <div class="grid grid-cols-2 gap-4 mt-4">
+    <input type="text" placeholder="Tipo de cuenta" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+    <input type="text" placeholder="Unidad" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+  </div>
+  
+  <div class="grid grid-cols-2 gap-4 mt-4">
+    <input type="text" placeholder="Fecha de ejecución inicial" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+    <input type="text" placeholder="Fecha de ejecución final" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+  </div>
+  
+  <div class="grid grid-cols-2 gap-4 mt-4">
+    <input type="text" placeholder="Cantidad" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+    <input type="text" placeholder="Costo unitario" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+    <input type="text" placeholder="Importe" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full col-span-2" />
+  </div>
+  
+  <textarea placeholder="Concepto o actividad" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full mt-4 h-24"></textarea>
+  
+  <div class="mt-4">
+    <p class="text-white">Responsables</p>
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-2">
+      <input type="text" placeholder="Responsable 1" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+      <input type="text" placeholder="Responsable 2" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+      <input type="text" placeholder="Responsable 3" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
+    </div>
+  </div>
+</div>
+  </div>
+
 </div>
 
 
-
-
-
-<!--
-  <h2 class="text-center font-bold text-lg uppercase">Planeación Operativa Anual de Actividades</h2>
-
-  <div class="grid grid-cols-2 gap-4 text-sm mt-2 border border-gray-300 p-2">
-    <div class="border border-gray-300 p-1"><strong>Fecha de elaboración:</strong> 21 de Noviembre de 2023</div>
-    <div class="border border-gray-300 p-1"><strong>Ejercicio fiscal:</strong> 2024</div>
-    <div class="col-span-2 border border-gray-300 p-1"><strong>Descripción general:</strong> Certificar el Sistema de Gestión de la Calidad de la Universidad...</div>
-    <div class="border border-gray-300 p-1"><strong>Fecha de inicio:</strong> Noviembre</div>
-    <div class="border border-gray-300 p-1"><strong>Fecha de término:</strong> Noviembre</div>
-    <div class="border border-gray-300 p-1"><strong>Área:</strong> Rectoría</div>
-    <div class="border border-gray-300 p-1"><strong>Subárea:</strong> Dirección de Gestión de la Calidad</div>
-    <div class="border border-gray-300 p-1"><strong>Gasto Estratégico:</strong> ✔</div>
-    <div class="border border-gray-300 p-1"><strong>Gasto Corriente:</strong> ✔</div>
-    <div class="col-span-2 border border-gray-300 p-1"><strong>Eje Rector del POI:</strong> VI: Gestión Administrativa Institucional</div>
-    <div class="col-span-2 border border-gray-300 p-1"><strong>Línea de Acción del POI:</strong> Implementación institucional...</div>
-    <div class="col-span-2 border border-gray-300 p-1"><strong>Proyecto o Meta del POI:</strong> 1.4. Certificación de procesos administrativos.</div>
-  </div>
-
-  <div class="w-full mt-4">
-    <table class="w-full border-collapse border border-gray-300">
-      <thead>
-        <tr>
-          <th class="border border-gray-300 px-4 py-2">Concepto o Actividad</th>
-          <th class="border border-gray-300 px-4 py-2">Tipo de cuenta</th>
-          <th class="border border-gray-300 px-4 py-2">Fecha de Ejecución</th>
-          <th class="border border-gray-300 px-4 py-2">Responsables</th>
-          <th class="border border-gray-300 px-4 py-2">Cantidad</th>
-          <th class="border border-gray-300 px-4 py-2">Unidad</th>
-          <th class="border border-gray-300 px-4 py-2">Costo Unitario</th>
-          <th class="border border-gray-300 px-4 py-2">Importes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2">Cuota de certificación del Sistema de Gestión</td>
-          <td class="border border-gray-300 px-4 py-2">Servicios</td>
-          <td class="border border-gray-300 px-4 py-2">Noviembre</td>
-          <td class="border border-gray-300 px-4 py-2">Dirección de Gestión de la Calidad</td>
-          <td class="border border-gray-300 px-4 py-2">1</td>
-          <td class="border border-gray-300 px-4 py-2">Servicios</td>
-          <td class="border border-gray-300 px-4 py-2">$111,000.00</td>
-          <td class="border border-gray-300 px-4 py-2">$111,000.00</td>
-        </tr>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2">Hospedaje del equipo evaluador</td>
-          <td class="border border-gray-300 px-4 py-2">Noches</td>
-          <td class="border border-gray-300 px-4 py-2">Noviembre</td>
-          <td class="border border-gray-300 px-4 py-2">Dirección de Gestión de la Calidad</td>
-          <td class="border border-gray-300 px-4 py-2">6</td>
-          <td class="border border-gray-300 px-4 py-2">Noches</td>
-          <td class="border border-gray-300 px-4 py-2">$3,000.00</td>
-          <td class="border border-gray-300 px-4 py-2">$18,000.00</td>
-        </tr>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2">Alimentos del equipo evaluador</td>
-          <td class="border border-gray-300 px-4 py-2">Alimentos</td>
-          <td class="border border-gray-300 px-4 py-2">Noviembre</td>
-          <td class="border border-gray-300 px-4 py-2">Dirección de Gestión de la Calidad</td>
-          <td class="border border-gray-300 px-4 py-2">42</td>
-          <td class="border border-gray-300 px-4 py-2">Alimentos</td>
-          <td class="border border-gray-300 px-4 py-2">$500.00</td>
-          <td class="border border-gray-300 px-4 py-2">$21,000.00</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="text-right font-bold mt-2">Costo estimado del proyecto: $309,500.00</div> -->

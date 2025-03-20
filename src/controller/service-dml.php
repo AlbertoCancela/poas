@@ -24,7 +24,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             INNER JOIN POAS_LINEASACCION pla ON ppm.ID_LINEAS_ACCION = pla.ID
                             INNER JOIN POAS_EJERECTOR pe ON pla.ID_EJE_RECTOR = pe.ID
                             ORDER BY pp.FECHA_ELABORACION DESC;",
-                'afsPd' => "SELECT * FROM POAS_CONCEPTOACTIVIDAD WHERE FOLIO = :id"];
+                'afsPd' => "SELECT 
+                                pc.FOLIO,
+                                ps.NOMBRE AS AREA,
+                                pu.NOMBRE AS AUTOR,
+                                pc.FECHA_EJECUCION,
+                                pcu.NOMBRE AS CUENTA,
+                                pun.NOMBRE AS UNIDAD,
+                                pc.CONCEPTO,
+                                pc.COSTO_UNITARIO,
+                                pc.CANTIDAD,
+                                pc.IMPORTE_TOTAL
+                            FROM POAS_CONCEPTOACTIVIDAD pc
+                            INNER JOIN POAS_POAS PP ON (pc.FOLIO = pp.FOLIO)
+                            INNER JOIN POAS_SECCIONES ps ON (pp.ID_AREA = ps.ID)
+                            INNER JOIN POAS_USUARIOS pu ON (pp.AUTOR = pu.ID)
+                            INNER JOIN POAS_CUENTAS pcu ON (pc.TIPO_CUENTA = pcu.ID)
+                            INNER JOIN POAS_UNIDADES pun ON (pc.UNIDAD = pun.ID)
+                            WHERE pc.FOLIO = :id;"];
     
     if($data['action'] == 'obtainData'){
         $sql = $sqlQuery[$data['sql']];
@@ -43,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode(["success" => false, "error" => "El folio está vacío o nulo"]);
             exit;
         }
-        $sql = "SELECT * FROM POAS_CONCEPTOACTIVIDAD WHERE FOLIO = ?";
+        // $sql = "SELECT * FROM POAS_CONCEPTOACTIVIDAD WHERE FOLIO = ?";
         $params = [$folio]; // Firebird usa ? en lugar de :id
         $response = $object->simpleQuery($sql, $params);
         // echo json_encode(["debug_folio" => $folio]); // Si es un array PHP, lo convierte a JSON

@@ -33,7 +33,8 @@ addConcept = () => {
     formHandler.saveObjectsToSessionStorage(arrayItems, 'conceptsPOA')
     let concepts = formHandler.getConceptsFromSessionStorage()
     console.log(concepts)
-    showMyConcepts(concepts)
+    formHandler.sweetAlertTimer('top-right', 'success', 'Concepto agregado', '', '1000')
+    // showMyConcepts(concepts)
 }
 
 var showMyConcepts = () => {
