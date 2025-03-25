@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: php_app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - firebird
+    restart: always
+
+  firebird:
+    image: jacobalberty/firebird
+    container_name: firebird_db
+    environment:
+      ISC_PASSWORD: masterkey
+      FIREBIRD_DATABASE: /firebird/data/poas.fdb
+    ports:
+      - "3050:3050"
+    volumes:
+      - firebird_data:/firebird/data
+    restart: always
+
+volumes:
+  firebird_data:

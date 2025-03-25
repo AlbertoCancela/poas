@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# Si la URL no apunta a un archivo o directorio existente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirigir todo a views/index.php
+RewriteRule ^(.*)$ /views/index.php [L]
