@@ -1,28 +1,42 @@
-version: '3.8'
-
 services:
   web:
     build: .
-    container_name: php_app
+    container_name: poas_php56
     ports:
-      - "8080:80"
+      - "8082:80"
     volumes:
       - .:/var/www/html
-    depends_on:
-      - firebird
-    restart: always
+    networks:
+      - poasnet
 
-  firebird:
-    image: jacobalberty/firebird
-    container_name: firebird_db
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_poas
     environment:
-      ISC_PASSWORD: masterkey
-      FIREBIRD_DATABASE: /firebird/data/poas.fdb
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: BDSISCUH
+      MYSQL_USER: bdsiscuh_user
+      MYSQL_PASSWORD: userpass
     ports:
-      - "3050:3050"
+      - "3307:3306"
     volumes:
-      - firebird_data:/firebird/data
+      - ./BDSISCUH.sql:/docker-entrypoint-initdb.d/BDSISCUH.sql
+    networks:
+      - poasnet
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma_server
     restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql_poas
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+    networks:
+      - poasnet
 
-volumes:
-  firebird_data:
+networks:
+  poasnet:
