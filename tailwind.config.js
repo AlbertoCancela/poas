@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-      "./*.php",
-      "./views/**/*.php",
-      "./src/**/*.{html,php,js}",
-    ],
+  content: [
+    './src/**/*.{php,js,html}',
+    './views/**/*.{php,js,html}',
+    './components/**/*.{php,js,html}',
+    './*.php',
+  ],
     theme: {
       extend: {
         colors: {
@@ -12,6 +13,10 @@ module.exports = {
             custom_gray: '#D9D9D9',
             custom_blueUH: '#034ea1',
             custom_glass: 'rgba(0,0,0,0.2)',
+            custom_glass_cyan: 'rgba(0,255,255,0.2)',
+            custom_glass_red: 'rgba(255,0,0,0.2)',
+            custom_glass_green: 'rgba(60,179,113,0.2)',
+            custom_glass_yellow: 'rgba(255,165,0,0.2)',
         },
         boxShadow: {
           custom_medium: '20px 20px 4px -14px rgba(0,0,0,0.3)', 

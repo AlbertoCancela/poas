@@ -10,8 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POA's UH</title>
-    <link href="../dist/output.css" rel="stylesheet">
-    <link rel="icon" href="../public/images/uhLogo.png">
+    <link href="../../../dist/output.css" rel="stylesheet">
+    <link rel="icon" href="../../../public/images/uhLogo.png">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <style>
@@ -40,6 +41,9 @@
 <script src="../public/js/modals.js"></script>
 <script src="../public/js/sideBarToggle.js"></script>
 <script src="../public/js/Class-DML.js"></script>
+<script src="../public/js/initPoa.js"></script>
+<script src="../public/js/test-api.js"></script>
+<script src="../public/js/showPoas.js"></script>
 <script>
     var objectDML = new AutoFill();
     objectDML.fillSearchWithRecentPoas();

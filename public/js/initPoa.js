@@ -3,6 +3,8 @@ function initPoa_changeView(firstElement, secondElement, animation = null) {
     const SE = document.getElementById(secondElement);
     const ANIMATION = animation == null ? 'translate-y-4' : animation; 
 
+    partValidation(firstElement, secondElement);
+
     // Animar la salida del primer elemento
     FE.classList.add('opacity-0', ANIMATION, 'transition-all', 'duration-300', 'ease-in-out');
 
@@ -23,6 +25,35 @@ function initPoa_changeView(firstElement, secondElement, animation = null) {
 
     }, 300); // Coincide con `duration-300`
 }
+
+function partValidation(firstElement, secondElement){
+    if(firstElement == 'initPoa-first' && secondElement == 'initPoa-second'){
+        const inputs = document.querySelectorAll('#initPoa-first .input-field');
+        var counter = 0;
+            inputs.forEach( input => {
+                if(input.type === 'radio'){
+                    if (input.checked) {
+                        counter++;
+                    }
+                }
+                else{
+                    if(input.value){
+                        console.log(input.getAttribute('id'))
+                        counter++
+                    }
+                }
+            })
+            console.log(counter)
+    }
+}
+
+function changeHidden(f,s){
+    f = document.getElementById(f)
+    s = document.getElementById(s)
+    f.classList.add('hidden')
+    s.classList.remove('hidden')
+}
+
 
 document.querySelectorAll('.hasDescription').forEach(select => {
     select.addEventListener('change', function() {
