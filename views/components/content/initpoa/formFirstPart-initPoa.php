@@ -115,7 +115,7 @@
 
                 <!-- Botón de siguiente -->
         <div class="flex justify-end mt-8">
-            <button id="btnValidate" onclick="initPoa_changeView('initPoa-first', 'initPoa-second')" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-4 rounded-md">
+            <button id="btnValidate" onclick="initPoa_changeView('initPoa-first', 'initPoa-second', 1)" class="hover:bg-green-700 border-2 border-green-600 text-white font-semibold py-2 px-4 rounded-md">
                 siguiente <i class="bi bi-arrow-right-short"></i>
             </button>
         </div>

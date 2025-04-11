@@ -35,15 +35,15 @@
     <div id="poaDetails" class="flex flex-col bg-gray-700 rounded-md h-[70vh] max-h-[70vh] overflow-y-auto text-gray-300">        
         <div class="flex flex-col p-3 border-b">
             <div class="space-x-4">
-                <b class="text-green-700">1003</b> <b class="text-cyan-400">Estratégico</b>
+                <b class="text-green-700 poaDetail-change">1003</b> <b class="text-cyan-400 poaDetail-change">Estratégico</b>
             </div>
-            <div><b>V.O - COORDINACIÓN DE SISTEMAS, REDES Y DESARROLLO TECNOLÓGICO</b></div>
-            <div><i>Alberto Josué Cancela Arredondo</i></div>
+            <div><b class="poaDetail-change">V.O - COORDINACIÓN DE SISTEMAS, REDES Y DESARROLLO TECNOLÓGICO</b></div>
+            <div><i class="poaDetail-change">Alberto Josué Cancela Arredondo</i></div>
         </div>
         <div class="flex flex-col space-y-4 p-6 border-b">
             <div>
                 <b class="text-orange-500">Descripción general</b>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta reprehenderit nobis sed sequi. 
+                <p class="poaDetail-change">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta reprehenderit nobis sed sequi. 
                     Eaque laborum vel praesentium repudiandae hic esse quia totam itaque, quasi aliquid facere. Illum dolores beatae minus!
                     
                 </p>
@@ -51,17 +51,21 @@
             <div>
                 <b class="flex text-orange-500">Datos generales</b>
                 <div class="space-x-2 text-sm">
-                    <b>Ejercicio Fiscal: <i class="text-yellow-500">2025</i></b>
-                    <b>Fecha de creación: <i class="text-yellow-500">20/03/2024</i></b>
-                    <b>Fecha de ejecución: <i class="text-yellow-500">20/03/2024 - 21/03/2024</i></b>
+                    <b>Ejercicio Fiscal: <i class="text-yellow-500 poaDetail-change">2025</i></b>
+                    <b>Fecha de creación: <i class="text-yellow-500 poaDetail-change">20/03/2024</i></b>
+                    <b>Fecha de ejecución: <i class="text-yellow-500 poaDetail-change">20/03/2024 - 21/03/2024</i></b>
                 </div>
             </div>
             <div class="space-x-4 text-sm">
-                <b>VI - Gestión administrativa institucional</b> <b>Línea de acción 1.1</b> <b>Proyecto/meta1.4</b>
+                <b class="poaDetail-change">VI - Gestión administrativa institucional</b>
+                <b class="poaDetail-change">Línea de acción 1.1</b>
+                <b class="poaDetail-change">Proyecto/meta1.4</b>
+                <!-- <b class="poaDetail-change">Línea de acción 1.1</b>
+                <b class="poaDetail-change">Proyecto/meta1.4</b> -->
             </div>
             <div>
                 <b class="text-orange-500">Observaciones</b>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis porro temporibus 
+                <p class="poaDetail-change">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis porro temporibus 
                     exercitationem? Veritatis magni qui repellat labore ipsum expedita illum quis repellendus? Repudiandae minus quis ut. Voluptatum, reprehenderit quia.
                 </p>
             </div>

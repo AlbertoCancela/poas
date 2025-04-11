@@ -1,10 +1,16 @@
-function initPoa_changeView(firstElement, secondElement, animation = null) {
+function initPoa_changeView(firstElement, secondElement, step = null, animation = null) {
     const FE = document.getElementById(firstElement);
     const SE = document.getElementById(secondElement);
     const ANIMATION = animation == null ? 'translate-y-4' : animation; 
 
-    partValidation(firstElement, secondElement);
-
+    
+    if (step == 1){ //cambiar validaciones por step en lugar de first / second element.
+        const validation = partValidation(firstElement, secondElement);
+        if (!validation){
+            alert('xd')
+        }
+        alert('you won ma nigga')
+    }
     // Animar la salida del primer elemento
     FE.classList.add('opacity-0', ANIMATION, 'transition-all', 'duration-300', 'ease-in-out');
 
@@ -23,7 +29,7 @@ function initPoa_changeView(firstElement, secondElement, animation = null) {
         SE.classList.add('opacity-100', 'translate-y-0', 'transition-all', 'duration-300', 'ease-in-out');
         SE.classList.remove('opacity-0', ANIMATION);
 
-    }, 300); // Coincide con `duration-300`
+    }, 300);
 }
 
 function partValidation(firstElement, secondElement){
@@ -33,17 +39,18 @@ function partValidation(firstElement, secondElement){
             inputs.forEach( input => {
                 if(input.type === 'radio'){
                     if (input.checked) {
-                        counter++;
+                        // console.log(input.getAttribute('id'))
+                        counter++
                     }
                 }
                 else{
                     if(input.value){
-                        console.log(input.getAttribute('id'))
+                        // console.log(input.getAttribute('id'))
                         counter++
                     }
                 }
             })
-            console.log(counter)
+            return counter < 8 ? false : true
     }
 }
 

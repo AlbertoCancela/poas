@@ -1,5 +1,6 @@
-function showPoas(){
+function showPoas( element ){
     initPoa_changeView('searchResultsContainer','poaDetails')
     const objectShowPoaDetails = new AutoFill()
-    objectShowPoaDetails.showPoasDetails(20)
+    const folio = element.getAttribute('data-folio');
+    objectShowPoaDetails.showPoasDetails(folio)
 }

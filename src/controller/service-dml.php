@@ -12,19 +12,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'au' => "SELECT * FROM POAS_USUARIOS pu",
         'ac' => "SELECT * FROM POAS_CUENTAS",
         'afw5' => "SELECT 
-                    pp.FOLIO, 
+                    pp.FOLIO,
+                    pp.TIPO_GASTO,
+                    pp.DESCRIPCION,
+                    pp.FECHA_ELABORACION,
+                    pp.FECHA_INICIO,
+                    pp.OBSERVACIONES,
+                    pp.EJERCICIO_FISCAL,
                     ps.NOMBRE AS AREA, 
                     pu.NOMBRE AS AUTOR, 
                     pe.NOMBRE AS EJE_RECTOR,
-                    pp.EJERCICIO_FISCAL 
+                    ppm.NOMBRE as PROYECTO_META,
+                    pla.NOMBRE as POAS_LINEACCION
                 FROM POAS_POAS pp
                 INNER JOIN POAS_SECCIONES ps ON pp.ID_AREA = ps.ID
                 INNER JOIN POAS_USUARIOS pu ON pp.AUTOR = pu.ID
                 INNER JOIN POAS_PROYECTOMETA ppm ON pp.ID_PDI_PROYECTOMETA = ppm.ID
                 INNER JOIN POAS_LINEASACCION pla ON ppm.ID_LINEAS_ACCION = pla.ID
-                INNER JOIN POAS_EJERECTOR pe ON pla.ID_EJE_RECTOR = pe.ID
-                ORDER BY pp.FECHA_ELABORACION DESC
-                LIMIT 6;",
+                INNER JOIN POAS_EJERECTOR pe ON pla.ID_EJE_RECTOR = pe.ID",
         'afsPd' => "SELECT 
                         pc.FOLIO,
                         ps.NOMBRE AS AREA,
@@ -53,10 +58,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($data['action'] == 'obtainData') {
         $sql = $sqlQuery[$data['sql']];
+        // $sql .= " ORDER BY pp.FECHA_ELABORACION DESC LIMIT 6";
         $response = $object->simpleQuery($sql);
         echo is_string($response) ? $response : json_encode($response);
     }
-
+    if ($data['action'] == 'obtainPoasData') {
+        $sql = $sqlQuery[$data['sql']];
+        $sql .= " ORDER BY pp.FECHA_ELABORACION DESC LIMIT 6";
+        $response = $object->simpleQuery($sql);
+        echo is_string($response) ? $response : json_encode($response);
+    }
+    if ($data['action'] == 'obtainPoasDetails') {
+        $sql = $sqlQuery[$data['sql']];
+        $folio = isset($data['folio']) ? $data['folio'] : null;
+        $sql .= " WHERE FOLIO = $folio";
+        $response = $object->simpleQuery($sql);
+        echo is_string($response) ? $response : json_encode($response);
+    }
     if ($data['action'] == 'obtainConceptsByFolio') {
         $sql = $sqlQuery[$data['sql']];
         $folio = isset($data['folio']) ? $data['folio'] : null;
@@ -64,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode(["success" => false, "error" => "El folio está vacío o nulo"]);
             exit;
         }
-        $params = [$folio];
+        $params = [":id" => $folio];
         $response = $object->simpleQuery($sql, $params);
         echo json_encode($response);
     }

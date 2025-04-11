@@ -144,7 +144,7 @@ class AutoFill extends API{
     }
     async fillSearchWithRecentPoas(){
         var sql = "afw5";
-        const body = {action: 'obtainData', sql: sql}
+        const body = {action: 'obtainPoasData', sql: sql}
         const response = await this.request('service-dml.php', body)
         if(!response.success) return
         console.log(response.data)
@@ -157,7 +157,7 @@ class AutoFill extends API{
             let autor = response.data[i].AUTOR
             let ejerector = response.data[i].EJE_RECTOR
             let ejercicioFiscal = response.data[i].EJERCICIO_FISCAL
-            htmlCards +=  `<div onclick="showPoas()" data-folio="${folio}" class=" bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center hover-animate">
+            htmlCards +=  `<div onclick="showPoas(this)" data-folio="${folio}" class=" bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center hover-animate">
                                 <div>
                                     <p class="text-green-400 font-bold">${folio}</p>
                                     <p class="font-semibold">${area}</p>
@@ -176,13 +176,32 @@ class AutoFill extends API{
         }, 100);
     }
 
-    async showPoasDetails(folio) {
+    async showPoasDetails( folio ){
+        // folio = 20;
+        console.log(folio)
+        var sql = "afw5";
+        const body = {action: 'obtainPoasDetails', sql: sql, folio: folio}
+        const response = await this.request("service-dml.php", body)
+        this.fillDomForPoasDetails( response )
+    }
+    
+    fillDomForPoasDetails( response ){
+        const data = response.data[0]
+        const DOMdetails = document.querySelectorAll('.poaDetail-change')
+        const arrayDetails = [data.FOLIO, data.TIPO_GASTO,  data.AREA, data.AUTOR, data.DESCRIPCION, data.EJERCICIO_FISCAL, data.FECHA_ELABORACION, data.FECHA_INICIO, data.EJE_RECTOR, data.PROYECTO_META, data.POAS_LINEACCION, data.OBSERVACIONES]
+        DOMdetails.forEach( (e, i) => {
+            e.innerHTML = arrayDetails[i]
+        })
+    }
+
+    async showPoasConcepts( folio ) {
+        var folio = 20
         console.log(folio)
         var sql = "afsPd";
         const body = { action: "obtainConceptsByFolio", sql: sql, folio: folio };
         const response = await this.request("service-dml.php", body);
         
-        console.log(response); // Para verificar si la API responde bien
+        // console.log(response); // Para verificar si la API responde bien
     
         // if (!response.success) return;
     
@@ -208,7 +227,6 @@ class AutoFill extends API{
     
     //     showContent.innerHTML = htmlCards; // ✅ Ahora se renderiza correctamente
     }
-
     
 }
 
