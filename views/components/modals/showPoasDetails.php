@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal (Actualmente no se ocupa, pero por si al caso jaha)-->
 <div id="showPoasDetails" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 invisible transition-opacity duration-300 ease-out">
     <div class="modal-content flex flex-col bg-white p-4 rounded-lg shadow-lg w-[60vh] h-[70vh] transform scale-95 transition-transform duration-300 ease-out">
         
@@ -10,7 +10,7 @@
         <!-- Contenedor principal con scroll -->
         <div id="concepts-myConcepts" class="flex flex-col space-y-2 overflow-y-auto max-h-[50vh] p-2">
             
-            <!-- Toggle Contenedor 1 -->
+            Toggle Contenedor 1
             <details class="border border-gray-300 rounded-md bg-gray-100 open:bg-gray-200 transition">
                 <summary class="w-full text-left p-2 font-medium bg-gray-200 hover:bg-gray-300 rounded-t-md cursor-pointer">
                     Concepto 1

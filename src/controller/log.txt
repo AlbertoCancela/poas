@@ -1,0 +1,18 @@
+[INFO] Intentando conexión: mysql:host=mysql_poas;port=3306;dbname=BDSISCUH
+[ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for mysql_poas failed: Temporary failure in name resolution
+[INFO] Intentando conexión: mysql:host=mysql_poas;port=3306;dbname=BDSISCUH
+[ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for mysql_poas failed: Temporary failure in name resolution
+[INFO] Intentando conexión: mysql:host=mysql_poas;port=3306;dbname=BDSISCUH
+[ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for mysql_poas failed: Temporary failure in name resolution
+[INFO] Intentando conexión: mysql:host=mysql_poas;port=3306;dbname=BDSISCUH
+[ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for mysql_poas failed: Temporary failure in name resolution
+[INFO] Intentando conexión: mysql:host=mysql_poas;port=3306;dbname=BDSISCUH
+[ERROR] SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for mysql_poas failed: Temporary failure in name resolution
+[INFO] Entró a service-test.php
+[INFO] Body recibido: {"test":true}
+[INFO] Instancia de QueryHandler creada
+[INFO] Entró a service-test.php
+[INFO] Body recibido: {"test":true}
+[INFO] Instancia de QueryHandler creada
+[INFO] Body recibido: {"test":true}
+[INFO] Instancia de QueryHandler creada

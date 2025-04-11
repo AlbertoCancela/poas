@@ -12,7 +12,7 @@
 
     <!-- Botones hasta abajo -->
     <div onclick="showPoasDetails()" class="grid grid-cols-2 gap-2 mt-auto">
-        <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-blue-600">
+        <!-- <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-blue-600">
             Aprobar POA
         </button>
         <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-green-600">
@@ -22,109 +22,66 @@
             Imprimir Excel
         </button>
         <button class="bg-gray-800 text-gray-200 p-3 rounded-md border border-gray-600">
-            <!-- Espacio vacío si no hay contenido -->
-        </button>
+        </button> -->
     </div>
 </div>
 
 <!-- Contenedor de resultados (derecha, 8/12 del ancho total) -->
 <div class="bg-gray-300 basis-8/12 shadow-lg rounded-lg p-4 overflow-y-auto max-h-[90vh]">
-    <h2 class="text-gray-700 text-lg font-semibold mb-4 text-right">RESULTADOS DE BÚSQUEDA</h2>
-    <div id="searchResultsContainer" class="space-y-4 max-h-[70vh] overflow-y-auto">
-        <!-- Tarjetas de resultados -->
-        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
-            <div>
-                <p class="text-green-400 font-bold">12345</p>
-                <p class="font-semibold">Coordinación de Sistemas</p>
-                <p class="text-sm">Alberto Josué Cancela Arredondo</p>
-                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
+    <div class="space-x-4 text-gray-700 font-semibold rounded-md mb-4 ">
+        <b class="cursor-pointer" onclick="changeHidden('poaDetails','searchResultsContainer')"> <i class="bi bi-arrow-left-circle"></i> Regresar a resultados de búsqueda</b>
+        <h2 class=" text-right">RESULTADOS DE BÚSQUEDA</h2>
+    </div>
+    <div id="poaDetails" class="flex flex-col bg-gray-700 rounded-md h-[70vh] max-h-[70vh] overflow-y-auto text-gray-300">        
+        <div class="flex flex-col p-3 border-b">
+            <div class="space-x-4">
+                <b class="text-green-700">1003</b> <b class="text-cyan-400">Estratégico</b>
             </div>
-            <p class="text-gray-300 text-lg">2026</p>
+            <div><b>V.O - COORDINACIÓN DE SISTEMAS, REDES Y DESARROLLO TECNOLÓGICO</b></div>
+            <div><i>Alberto Josué Cancela Arredondo</i></div>
         </div>
-
-        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
+        <div class="flex flex-col space-y-4 p-6 border-b">
             <div>
-                <p class="text-green-400 font-bold">54321</p>
-                <p class="font-semibold">Dirección de Gestión de la Calidad</p>
-                <p class="text-sm">Daniel Zamora</p>
-                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
+                <b class="text-orange-500">Descripción general</b>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta reprehenderit nobis sed sequi. 
+                    Eaque laborum vel praesentium repudiandae hic esse quia totam itaque, quasi aliquid facere. Illum dolores beatae minus!
+                    
+                </p>
             </div>
-            <p class="text-gray-300 text-lg">2026</p>
+            <div>
+                <b class="flex text-orange-500">Datos generales</b>
+                <div class="space-x-2 text-sm">
+                    <b>Ejercicio Fiscal: <i class="text-yellow-500">2025</i></b>
+                    <b>Fecha de creación: <i class="text-yellow-500">20/03/2024</i></b>
+                    <b>Fecha de ejecución: <i class="text-yellow-500">20/03/2024 - 21/03/2024</i></b>
+                </div>
+            </div>
+            <div class="space-x-4 text-sm">
+                <b>VI - Gestión administrativa institucional</b> <b>Línea de acción 1.1</b> <b>Proyecto/meta1.4</b>
+            </div>
+            <div>
+                <b class="text-orange-500">Observaciones</b>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis porro temporibus 
+                    exercitationem? Veritatis magni qui repellat labore ipsum expedita illum quis repellendus? Repudiandae minus quis ut. Voluptatum, reprehenderit quia.
+                </p>
+            </div>
+            <div class="flex flex-col space-y-2">
+                <b class="text-orange-500">Conceptos</b>
+                <button class="w-[14vh] h-8 border-2 border-green-700 rounded-md bg-custom_glass_green"> Ver conceptos</button>
+            </div>
         </div>
-
-        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
-            <div>
-                <p class="text-green-400 font-bold">54321</p>
-                <p class="font-semibold">Dirección de Gestión de la Calidad</p>
-                <p class="text-sm">Daniel Zamora</p>
-                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
-            </div>
-            <p class="text-gray-300 text-lg">2025</p>
-        </div>
-
-        <div class="bg-gray-700 text-white p-4 rounded-md shadow-md flex justify-between items-center">
-            <div>
-                <p class="text-green-400 font-bold">12345</p>
-                <p class="font-semibold">Coordinación de Sistemas</p>
-                <p class="text-sm">Alberto Josué Cancela Arredondo</p>
-                <p class="text-xs text-gray-300">Certificación de procesos administrativos.</p>
-            </div>
-            <p class="text-gray-300 text-lg">2024</p>
+        <div class="flex p-4 justify-center space-x-8">
+            <div class="border-2 border-cyan-500 w-[13vh] h-[8vh] flex items-center justify-center text-center hover:bg-custom_glass_cyan cursor-pointer">Aprobar POA</div>
+            <div class="border-2 border-red-500 w-[13vh] h-[8vh] flex items-center justify-center text-center hover:bg-custom_glass_red cursor-pointer">Sugerir Edición</div>
+            <div class="border-2 border-green-600 w-[13vh] h-[8vh] flex items-center justify-center text-center hover:bg-custom_glass_green cursor-pointer">Imprimir en excel</div>
+            <div class="border-2 border-yellow-500 w-[13vh] h-[8vh] flex items-center justify-center text-center hover:bg-custom_glass_yellow cursor-pointer">Función sugerida</div>
         </div>
     </div>
-    <div id="searchResultsContainer" class="hidden space-y-4 max-h-[70vh] overflow-y-auto p-4">
-    <div class="bg-gray-700 text-white p-6 rounded-lg shadow-lg">
-      <div class="flex justify-between items-center border-b border-gray-600 pb-2 mb-4">
-        <span class="text-lg font-semibold text-green-400">1003</span>
-        <span class="text-green-400 font-semibold">Estratégico</span>
-      </div>
-      <h2 class="text-xl font-bold">COORDINACIÓN DE SISTEMAS, REDES Y DESARROLLO TECNOLÓGICO</h2>
-      <p class="text-gray-300 mt-2">Alberto Josué Cancela Arredondo</p>
-      <p class="text-gray-400">Gestión administrativa institucional</p>
-      <p class="text-gray-400 mt-2">Proyecto/meta <span class="text-yellow-400 ">1.4</span></p>
-      <div class="flex justify-between text-gray-400 mt-2 text-sm">
-        <p>Fecha de creación: <span class="text-yellow-400">20/03/2024</span></p>
-        <p>Ejercicio Fiscal: <span class="text-yellow-400">2025</span></p>
-        <p>Fecha de ejecución: <span class="text-yellow-400">20/03/2024 - 21/03/2024</span></p>
-      </div>
-      <p class="text-gray-400 mt-4 text-sm">
-        Lorem ipsum dolo dolo dolo dolo dolooooo Lorem ipsum dolo dolo dolo dolo dolo dolo...
-      </p>
+    <div id="searchResultsContainer" class="hidden space-y-4 max-h-[70vh] overflow-y-auto">
+        
     </div>
-    <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
-  <select class="w-full bg-gray-800 text-white p-2 rounded-md border border-gray-600">
-    <option>Seleccionar concepto del POA</option>
-  </select>
-  
-  <div class="grid grid-cols-2 gap-4 mt-4">
-    <input type="text" placeholder="Tipo de cuenta" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-    <input type="text" placeholder="Unidad" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-  </div>
-  
-  <div class="grid grid-cols-2 gap-4 mt-4">
-    <input type="text" placeholder="Fecha de ejecución inicial" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-    <input type="text" placeholder="Fecha de ejecución final" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-  </div>
-  
-  <div class="grid grid-cols-2 gap-4 mt-4">
-    <input type="text" placeholder="Cantidad" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-    <input type="text" placeholder="Costo unitario" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-    <input type="text" placeholder="Importe" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full col-span-2" />
-  </div>
-  
-  <textarea placeholder="Concepto o actividad" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full mt-4 h-24"></textarea>
-  
-  <div class="mt-4">
-    <p class="text-white">Responsables</p>
-    <div class="grid grid-cols-1 md:grid-cols-1 gap-2">
-      <input type="text" placeholder="Responsable 1" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-      <input type="text" placeholder="Responsable 2" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-      <input type="text" placeholder="Responsable 3" class="bg-gray-800 text-white p-2 rounded-md border border-gray-600 w-full" />
-    </div>
-  </div>
 </div>
-  </div>
 
-</div>
+
 
 
