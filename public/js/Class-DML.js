@@ -42,6 +42,7 @@ class AutoFill extends API{
             obtainUsersData: () => this.obtainUsersData(),
             fillSearchWithRecentPoas: () => this.fillSearchWithRecentPoas(),
             showPoasDetails: (folio) => this.showPoasDetails(folio),
+            showPoasConcepts: ( folio ) => this.showPoasConcepts( folio ),
             test: () => this.test(),
             default: () => console.warn(`La acción '${this.action}' no es reconocida.`)
         }
@@ -177,8 +178,6 @@ class AutoFill extends API{
     }
 
     async showPoasDetails( folio ){
-        // folio = 20;
-        console.log(folio)
         var sql = "afw5";
         const body = {action: 'obtainPoasDetails', sql: sql, folio: folio}
         const response = await this.request("service-dml.php", body)
@@ -192,16 +191,16 @@ class AutoFill extends API{
         DOMdetails.forEach( (e, i) => {
             e.innerHTML = arrayDetails[i]
         })
+        document.getElementById('showConceptsPoas').setAttribute('folio', data.FOLIO);
     }
 
     async showPoasConcepts( folio ) {
-        var folio = 20
         console.log(folio)
         var sql = "afsPd";
         const body = { action: "obtainConceptsByFolio", sql: sql, folio: folio };
         const response = await this.request("service-dml.php", body);
         
-        // console.log(response); // Para verificar si la API responde bien
+        console.log(response); // Para verificar si la API responde bien
     
         // if (!response.success) return;
     

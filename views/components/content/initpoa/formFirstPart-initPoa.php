@@ -1,6 +1,6 @@
 <div id="initPoa-first" class="flex flex-col p-6 space-y-6 opacity-100 translate-y-0 transition-all duration-300 ease-in-out">
         <!-- Título del formulario -->
-        <h2 class="text-xl font-semibold text-center">Planeación Osadperativa Anual</h2>
+        <h2 class="text-xl font-semibold text-center">Planeación Operativa Anual</h2>
         <!-- Fila: Fecha de elaboración y ejercicio fiscal -->
         <div class="flex space-x-4">
             <div class="flex-1">

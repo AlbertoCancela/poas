@@ -60,7 +60,7 @@
                 <b class="poaDetail-change">VI - Gestión administrativa institucional</b>
                 <b class="poaDetail-change">Línea de acción 1.1</b>
                 <b class="poaDetail-change">Proyecto/meta1.4</b>
-                <!-- <b class="poaDetail-change">Línea de acción 1.1</b>
+                <!-- <b class="poaDetail-change">Línea de acción 1.1</b> 
                 <b class="poaDetail-change">Proyecto/meta1.4</b> -->
             </div>
             <div>
@@ -71,7 +71,7 @@
             </div>
             <div class="flex flex-col space-y-2">
                 <b class="text-orange-500">Conceptos</b>
-                <button class="w-[14vh] h-8 border-2 border-green-700 rounded-md bg-custom_glass_green"> Ver conceptos</button>
+                <button onclick="showConceptsPoas(this)" id="showConceptsPoas" folio="" class="w-[14vh] h-8 border-2 border-green-700 rounded-md bg-custom_glass_green"> Ver conceptos</button>
             </div>
         </div>
         <div class="flex p-4 justify-center space-x-8">

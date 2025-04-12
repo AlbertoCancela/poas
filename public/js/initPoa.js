@@ -4,12 +4,13 @@ function initPoa_changeView(firstElement, secondElement, step = null, animation 
     const ANIMATION = animation == null ? 'translate-y-4' : animation; 
 
     
-    if (step == 1){ //cambiar validaciones por step en lugar de first / second element.
-        const validation = partValidation(firstElement, secondElement);
+    if (step != null){ //cambiar validaciones por step en lugar de first / second element.
+        const validation = partValidation(step);
         if (!validation){
-            alert('xd')
+            alert('Existen campos por rellenar')
+            return
         }
-        alert('you won ma nigga')
+        // alert('you won ma nigga')
     }
     // Animar la salida del primer elemento
     FE.classList.add('opacity-0', ANIMATION, 'transition-all', 'duration-300', 'ease-in-out');
@@ -32,25 +33,34 @@ function initPoa_changeView(firstElement, secondElement, step = null, animation 
     }, 300);
 }
 
-function partValidation(firstElement, secondElement){
-    if(firstElement == 'initPoa-first' && secondElement == 'initPoa-second'){
+function partValidation( step ){
+    if(step == 1){
         const inputs = document.querySelectorAll('#initPoa-first .input-field');
         var counter = 0;
             inputs.forEach( input => {
                 if(input.type === 'radio'){
                     if (input.checked) {
-                        // console.log(input.getAttribute('id'))
                         counter++
                     }
                 }
                 else{
                     if(input.value){
-                        // console.log(input.getAttribute('id'))
                         counter++
                     }
                 }
             })
             return counter < 8 ? false : true
+    }
+    else if(step == 2){
+        console.log('im in my nigga')
+        const inputs = document.querySelectorAll('#initPoa-second .input-field');
+        var counter = 0;
+            inputs.forEach( input => {
+                    if(input.value){
+                        counter++
+                    }
+            })
+            return counter < 4 ? false : true
     }
 }
 
