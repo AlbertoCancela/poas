@@ -3,6 +3,8 @@
 Módulo para la gestión de **POA's (Planes Operativos Anuales)** de la Universidad Hipócrates.  
 El proyecto combina **PHP**, **MySQL**, **TailwindCSS** y **Docker** para ofrecer una aplicación modular, portable y fácil de desplegar.
 
+https://www.figma.com/design/loe6ZlWjpJ89pgDk8rbrDo/POA-module?node-id=0-1&p=f&t=mE65DxfxsmnHYUrY-0
+
 ---
 
 ## 📂 Estructura del Proyecto
